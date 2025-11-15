@@ -9,6 +9,8 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
+// Schemas are defined inside the function that uses them.
+// The type is exported for use in the client component.
 const ChatContentSchema = z.object({
   text: z.string(),
 });
@@ -30,10 +32,6 @@ export const ChatResponseSchema = z.object({
 });
 export type ChatResponse = z.infer<typeof ChatResponseSchema>;
 
-export async function chat(request: ChatRequest): Promise<ChatResponse> {
-  return await chatFlow(request);
-}
-
 const chatFlow = ai.defineFlow(
   {
     name: 'chatFlow',
@@ -54,3 +52,8 @@ You MUST NOT provide medical advice, diagnosis, or treatment. Always include a d
     return { text };
   }
 );
+
+
+export async function chat(request: ChatRequest): Promise<ChatResponse> {
+  return await chatFlow(request);
+}
