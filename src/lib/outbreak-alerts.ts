@@ -1,3 +1,5 @@
+'use server';
+
 export type OutbreakAlert = {
     disease: string;
     alertLevel: 'High' | 'Medium' | 'Low';
@@ -55,7 +57,6 @@ export async function getOutbreakAlerts(location: string): Promise<Partial<Outbr
  * @returns A promise that resolves to an array of full outbreak alerts.
  */
 export async function getFullOutbreakAlerts(location: string): Promise<OutbreakAlert[]> {
-    'use server';
     const locationLower = location.toLowerCase();
     return mockAlerts.filter(alert =>
         alert.affectedAreas.some(area => locationLower.includes(area))
