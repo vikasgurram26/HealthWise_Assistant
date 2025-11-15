@@ -17,8 +17,10 @@ import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { useTranslation } from 'react-i18next';
 
 export default function SettingsPage() {
+  const { t } = useTranslation();
   const { toast } = useToast();
 
   const [name, setName] = useLocalStorage('settings-name', 'Example User');
@@ -36,8 +38,8 @@ export default function SettingsPage() {
     setTimeout(() => {
       setIsSaving(false);
       toast({
-        title: 'Settings Saved',
-        description: 'Your changes have been successfully saved.',
+        title: t('settingsSaved'),
+        description: t('settingsSavedDescription'),
       });
     }, 1500);
   };
@@ -46,18 +48,18 @@ export default function SettingsPage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>Settings</CardTitle>
+          <CardTitle>{t('settingsTitle')}</CardTitle>
           <CardDescription>
-            Manage your account and application settings.
+            {t('settingsDescription')}
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSaveChanges}>
           <CardContent className="space-y-8">
             {/* Profile Section */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">Profile</h3>
+              <h3 className="text-lg font-medium">{t('profileSectionTitle')}</h3>
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name">{t('nameLabel')}</Label>
                 <Input
                   id="name"
                   value={name}
@@ -66,7 +68,7 @@ export default function SettingsPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('emailLabel')}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -81,15 +83,15 @@ export default function SettingsPage() {
 
             {/* Notifications Section */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">Notifications</h3>
+              <h3 className="text-lg font-medium">{t('notificationsSectionTitle')}</h3>
               <p className="text-sm text-muted-foreground">
-                Configure how you receive notifications from HealthWise.
+                {t('notificationsDescription')}
               </p>
               <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <Label htmlFor="outbreak-alerts">Outbreak Alerts</Label>
+                  <Label htmlFor="outbreak-alerts">{t('outbreakAlertsToggleLabel')}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Receive alerts about disease outbreaks in your area.
+                    {t('outbreakAlertsToggleDescription')}
                   </p>
                 </div>
                 <Switch
@@ -101,9 +103,9 @@ export default function SettingsPage() {
               </div>
               <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <Label htmlFor="health-tips">AI Health Tips</Label>
+                  <Label htmlFor="health-tips">{t('healthTipsToggleLabel')}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Get occasional AI-powered health and wellness tips.
+                    {t('healthTipsToggleDescription')}
                   </p>
                 </div>
                 <Switch
@@ -115,9 +117,9 @@ export default function SettingsPage() {
               </div>
               <div className="flex items-center justify-between rounded-lg border p-4">
                 <div>
-                  <Label htmlFor="newsletter">Newsletter</Label>
+                  <Label htmlFor="newsletter">{t('newsletterToggleLabel')}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Subscribe to our monthly newsletter.
+                    {t('newsletterToggleDescription')}
                   </p>
                 </div>
                 <Switch
@@ -131,7 +133,7 @@ export default function SettingsPage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isSaving}>
-              {isSaving ? 'Saving...' : 'Save Changes'}
+              {isSaving ? t('saving') : t('saveChanges')}
             </Button>
           </CardFooter>
         </form>

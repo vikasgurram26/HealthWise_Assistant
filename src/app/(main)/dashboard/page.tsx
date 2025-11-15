@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Card,
   CardHeader,
@@ -8,15 +11,18 @@ import {
 import { StatCards } from '@/components/dashboard/stat-cards';
 import { Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTranslation } from 'react-i18next';
 
 export default function DashboardPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>Dashboard</CardTitle>
+          <CardTitle>{t('dashboardTitle')}</CardTitle>
           <CardDescription>
-            Welcome to your HealthWise Assistant. Here is a quick overview of global health information.
+            {t('dashboardDescription')}
           </CardDescription>
         </CardHeader>
         <CardContent>

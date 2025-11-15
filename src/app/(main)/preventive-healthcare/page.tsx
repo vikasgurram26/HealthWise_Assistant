@@ -21,8 +21,10 @@ import {
 } from '@/ai/flows/preventive-healthcare-info';
 import { ShieldCheck } from 'lucide-react';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { useTranslation } from 'react-i18next';
 
 export default function PreventiveHealthcarePage() {
+  const { t } = useTranslation();
   const [disease, setDisease] = useLocalStorage('preventive-disease', '');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<PreventiveHealthcareInfoOutput | null>(
@@ -35,8 +37,8 @@ export default function PreventiveHealthcarePage() {
     if (!disease) {
       toast({
         variant: 'destructive',
-        title: 'Missing Information',
-        description: 'Please enter a disease or condition.',
+        title: t('missingInfo'),
+        description: t('enterDisease'),
       });
       return;
     }
@@ -50,9 +52,8 @@ export default function PreventiveHealthcarePage() {
       console.error('Error getting preventive healthcare info:', error);
       toast({
         variant: 'destructive',
-        title: 'An Error Occurred',
-        description:
-          'Failed to get information from the AI. Please try again later.',
+        title: t('errorOccurred'),
+        description: t('failedToGetAIInfo'),
       });
     } finally {
       setIsLoading(false);
@@ -63,19 +64,18 @@ export default function PreventiveHealthcarePage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>Preventive Healthcare</CardTitle>
+          <CardTitle>{t('preventiveCareTitle')}</CardTitle>
           <CardDescription>
-            Get AI-driven, evidence-based information on preventive healthcare
-            measures.
+            {t('preventiveCareDescription')}
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="disease">Disease or Condition</Label>
+              <Label htmlFor="disease">{t('diseaseConditionLabel')}</Label>
               <Input
                 id="disease"
-                placeholder="e.g., Influenza, Diabetes Type 2"
+                placeholder={t('diseaseConditionPlaceholder')}
                 value={disease}
                 onChange={(e) => setDisease(e.target.value)}
                 disabled={isLoading}
@@ -84,7 +84,7 @@ export default function PreventiveHealthcarePage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Getting Information...' : 'Get Information'}
+              {isLoading ? t('gettingInformation') : t('getInformation')}
             </Button>
           </CardFooter>
         </form>
@@ -93,7 +93,7 @@ export default function PreventiveHealthcarePage() {
       {isLoading && (
         <Card>
           <CardHeader>
-            <CardTitle>Loading Preventive Measures...</CardTitle>
+            <CardTitle>{t('loadingPreventiveMeasures')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-4 w-[250px]" />
@@ -112,18 +112,18 @@ export default function PreventiveHealthcarePage() {
             <div className="flex items-center gap-3">
               <ShieldCheck className="size-6 text-primary" />
               <CardTitle>
-                Preventive Guidance for {disease}
+                {t('preventiveGuidanceFor', { disease })}
               </CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="mb-2 text-lg font-semibold">Preventive Measures</h3>
+              <h3 className="mb-2 text-lg font-semibold">{t('preventiveMeasures')}</h3>
               <p className="text-sm text-muted-foreground">{result.preventiveMeasures}</p>
             </div>
             <div>
               <h3 className="mb-2 text-lg font-semibold">
-                Application Guidance
+                {t('applicationGuidance')}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {result.applicationGuidance}

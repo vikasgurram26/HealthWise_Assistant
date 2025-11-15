@@ -1,3 +1,4 @@
+
 import {
     Card,
     CardContent,
@@ -6,36 +7,38 @@ import {
   } from '@/components/ui/card';
   import { getGlobalHealthData } from '@/lib/data';
   import { Users, AlertCircle, ShieldCheck, HeartPulse } from 'lucide-react';
+  import { useTranslation } from 'react-i18next';
   
   export async function StatCards() {
     const data = await getGlobalHealthData();
+    const { t } = useTranslation();
   
     const stats = [
       {
-        title: 'Total Cases',
+        title: t('totalCases'),
         value: data.cases.toLocaleString(),
         change: `+${data.todayCases.toLocaleString()}`,
         icon: <Users className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-red-500',
       },
       {
-        title: 'Total Deaths',
+        title: t('totalDeaths'),
         value: data.deaths.toLocaleString(),
         change: `+${data.todayDeaths.toLocaleString()}`,
         icon: <AlertCircle className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-red-500',
       },
       {
-        title: 'Total Recovered',
+        title: t('totalRecovered'),
         value: data.recovered.toLocaleString(),
         change: `+${data.todayRecovered.toLocaleString()}`,
         icon: <ShieldCheck className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-green-500',
       },
       {
-        title: 'Active Cases',
+        title: t('activeCases'),
         value: data.active.toLocaleString(),
-        change: 'Worldwide',
+        change: t('worldwide'),
         icon: <HeartPulse className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-muted-foreground',
       },

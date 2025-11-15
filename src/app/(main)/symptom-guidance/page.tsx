@@ -23,8 +23,10 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { useTranslation } from 'react-i18next';
 
 export default function SymptomGuidancePage() {
+  const { t } = useTranslation();
   const [symptoms, setSymptoms] = useLocalStorage('symptom-symptoms', '');
   const [location, setLocation] = useLocalStorage('symptom-location', '');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,8 +38,8 @@ export default function SymptomGuidancePage() {
     if (!symptoms || !location) {
       toast({
         variant: 'destructive',
-        title: 'Missing Information',
-        description: 'Please enter both symptoms and location.',
+        title: t('missingInfo'),
+        description: t('enterSymptomsAndLocation'),
       });
       return;
     }
@@ -51,9 +53,8 @@ export default function SymptomGuidancePage() {
       console.error('Error getting symptom guidance:', error);
       toast({
         variant: 'destructive',
-        title: 'An Error Occurred',
-        description:
-          'Failed to get guidance from the AI. Please try again later.',
+        title: t('errorOccurred'),
+        description: t('failedToGetAIGuidance'),
       });
     } finally {
       setIsLoading(false);
@@ -64,29 +65,26 @@ export default function SymptomGuidancePage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>Symptom Guidance</CardTitle>
-          <CardDescription>
-            Enter your symptoms and location to get AI-driven guidance on
-            possible health conditions.
-          </CardDescription>
+          <CardTitle>{t('symptomGuidanceTitle')}</CardTitle>
+          <CardDescription>{t('symptomGuidanceDescription')}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="grid gap-2">
-              <Label htmlFor="symptoms">Symptoms</Label>
+              <Label htmlFor="symptoms">{t('symptomsLabel')}</Label>
               <Textarea
                 id="symptoms"
-                placeholder="e.g., fever, cough, headache"
+                placeholder={t('symptomsPlaceholder')}
                 value={symptoms}
                 onChange={(e) => setSymptoms(e.target.value)}
                 disabled={isLoading}
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="location">Location</Label>
+              <Label htmlFor="location">{t('locationLabel')}</Label>
               <Input
                 id="location"
-                placeholder="e.g., New York, NY"
+                placeholder={t('locationPlaceholder')}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 disabled={isLoading}
@@ -95,7 +93,7 @@ export default function SymptomGuidancePage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Getting Guidance...' : 'Get Guidance'}
+              {isLoading ? t('gettingGuidance') : t('getGuidance')}
             </Button>
           </CardFooter>
         </form>
@@ -104,7 +102,7 @@ export default function SymptomGuidancePage() {
       {isLoading && (
         <Card>
           <CardHeader>
-            <CardTitle>Analysis in Progress</CardTitle>
+            <CardTitle>{t('analysisInProgress')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-4 w-[250px]" />
@@ -118,13 +116,13 @@ export default function SymptomGuidancePage() {
       {result && (
         <Card>
           <CardHeader>
-            <CardTitle>Possible Conditions</CardTitle>
+            <CardTitle>{t('possibleConditions')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm">{result.possibleConditions}</p>
             <Alert variant="destructive">
               <Terminal className="h-4 w-4" />
-              <AlertTitle>Disclaimer</AlertTitle>
+              <AlertTitle>{t('disclaimer')}</AlertTitle>
               <AlertDescription>
                 {result.disclaimer}
               </AlertDescription>
