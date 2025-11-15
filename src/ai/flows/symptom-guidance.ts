@@ -12,6 +12,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { getOutbreakAlerts } from '@/lib/outbreak-alerts';
 
 const SymptomGuidanceInputSchema = z.object({
   symptoms: z.string().describe('A description of the symptoms the user is experiencing.'),
@@ -37,14 +38,30 @@ export async function symptomGuidance(input: SymptomGuidanceInput): Promise<Symp
   return symptomGuidanceFlow(input);
 }
 
+const getOutbreakAlertsTool = ai.defineTool(
+    {
+      name: 'getOutbreakAlerts',
+      description: 'Get disease outbreak alerts for a specific location.',
+      inputSchema: z.object({ location: z.string() }),
+      outputSchema: z.array(z.object({
+          disease: z.string(),
+          alertLevel: z.string(),
+      })),
+    },
+    async ({ location }) => {
+      return getOutbreakAlerts(location);
+    }
+  );
+
 const symptomGuidancePrompt = ai.definePrompt({
   name: 'symptomGuidancePrompt',
   input: {schema: SymptomGuidanceInputSchema},
   output: {schema: SymptomGuidanceOutputSchema},
+  tools: [getOutbreakAlertsTool],
   prompt: `You are an AI-driven health assistant that provides guidance on possible medical conditions based on user-reported symptoms.
 
-  Take into account the user's location to check for any relevant disease outbreak alerts in the area.
-  Based on the symptoms and outbreak alerts, provide a list of possible conditions.
+  Take into account the user's location to check for any relevant disease outbreak alerts in the area by using the getOutbreakAlerts tool.
+  Based on the symptoms and any outbreak alerts, provide a list of possible conditions.
 
   Symptoms: {{{symptoms}}}
   Location: {{{location}}}
