@@ -9,25 +9,23 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-// Schemas are defined inside the function that uses them.
-// The type is exported for use in the client component.
 const ChatContentSchema = z.object({
   text: z.string(),
 });
 
-export const ChatMessageSchema = z.object({
+const ChatMessageSchema = z.object({
   role: z.enum(['user', 'model']),
   content: z.array(ChatContentSchema),
 });
 export type ChatMessage = z.infer<typeof ChatMessageSchema>;
 
-export const ChatRequestSchema = z.object({
+const ChatRequestSchema = z.object({
   history: z.array(ChatMessageSchema),
   prompt: z.string(),
 });
 export type ChatRequest = z.infer<typeof ChatRequestSchema>;
 
-export const ChatResponseSchema = z.object({
+const ChatResponseSchema = z.object({
   text: z.string(),
 });
 export type ChatResponse = z.infer<typeof ChatResponseSchema>;
