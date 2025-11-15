@@ -1,17 +1,36 @@
 
+'use client';
+
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
   } from '@/components/ui/card';
-  import { getGlobalHealthData } from '@/lib/data';
+  import { getGlobalHealthData, type GlobalHealthData } from '@/lib/data';
   import { Users, AlertCircle, ShieldCheck, HeartPulse } from 'lucide-react';
-  import { TFunction } from 'i18next';
+  import { useTranslation } from 'react-i18next';
+  import { useEffect, useState } from 'react';
   
-  export async function StatCards({ t }: { t: TFunction<any, undefined> }) {
-    const data = await getGlobalHealthData();
+  export function StatCards() {
+    const { t } = useTranslation();
+    const [data, setData] = useState<GlobalHealthData | null>(null);
+
+    useEffect(() => {
+      getGlobalHealthData().then(setData);
+    }, []);
   
+    if (!data) {
+      return (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+           <Skeleton className="h-28" />
+           <Skeleton className="h-28" />
+           <Skeleton className="h-28" />
+           <Skeleton className="h-28" />
+        </div>
+      );
+    }
+
     const stats = [
       {
         title: t('totalCases'),
@@ -62,3 +81,5 @@ import {
       </div>
     );
   }
+
+import { Skeleton } from '../ui/skeleton';

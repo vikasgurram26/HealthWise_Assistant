@@ -9,11 +9,11 @@ import {
 import { StatCards } from '@/components/dashboard/stat-cards';
 import { Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { getTranslations } from '@/lib/server-i18n';
 import { RecentAlerts } from '@/components/dashboard/recent-alerts';
 import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card';
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
+import { getTranslations } from '@/lib/server-i18n';
 
 export default async function DashboardPage() {
   const { t } = await getTranslations();
@@ -29,14 +29,14 @@ export default async function DashboardPage() {
 
       {/* Stat Cards */}
       <Suspense fallback={<StatCardsLoading />}>
-        <StatCards t={t} />
+        <StatCards />
       </Suspense>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Left Column */}
         <div className="flex flex-col gap-6 lg:col-span-2">
           <Suspense fallback={<Skeleton className="h-64" />}>
-            <RecentAlerts t={t} />
+            <RecentAlerts />
           </Suspense>
         </div>
 

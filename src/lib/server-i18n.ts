@@ -2,6 +2,7 @@
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next/initReactI18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
+import { getOptions } from './i18n';
 import { cookies } from 'next/headers';
 
 const initI18next = async (lng: string | undefined, ns = 'translation') => {
@@ -14,12 +15,7 @@ const initI18next = async (lng: string | undefined, ns = 'translation') => {
           import(`../../public/locales/${language}/${namespace}.json`)
       )
     )
-    .init({
-      lng,
-      fallbackLng: 'en',
-      ns,
-      defaultNS: ns,
-    });
+    .init(getOptions(lng, ns));
   return i18nInstance;
 };
 

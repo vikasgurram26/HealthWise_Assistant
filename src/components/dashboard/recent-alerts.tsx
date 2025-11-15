@@ -1,4 +1,6 @@
 
+'use client';
+
 import {
   Card,
   CardContent,
@@ -12,7 +14,9 @@ import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
-import { TFunction } from 'i18next';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { Skeleton } from '../ui/skeleton';
 
 const getAlertIcon = (level: 'High' | 'Medium' | 'Low') => {
   switch (level) {
@@ -38,12 +42,23 @@ const getAlertBadgeVariant = (level: 'High' | 'Medium' | 'Low') => {
   }
 };
 
-export async function RecentAlerts({ t }: { t: TFunction<any, undefined> }) {
-  // Fetch alerts for a common area or all active alerts to show on dashboard
-  const allAlerts = await getFullOutbreakAlerts('');
-  const activeAlerts = allAlerts
-    .filter((alert) => alert.status === 'Active')
-    .slice(0, 3); // Show top 3
+export function RecentAlerts() {
+  const { t } = useTranslation();
+  const [activeAlerts, setActiveAlerts] = useState<OutbreakAlert[] | null>(null);
+
+  useEffect(() => {
+    getFullOutbreakAlerts('').then(allAlerts => {
+      const filteredAlerts = allAlerts
+        .filter((alert) => alert.status === 'Active')
+        .slice(0, 3); // Show top 3
+      setActiveAlerts(filteredAlerts);
+    });
+  }, []);
+
+
+  if (!activeAlerts) {
+    return <Skeleton className="h-64" />;
+  }
 
   return (
     <Card className="flex h-full flex-col">
