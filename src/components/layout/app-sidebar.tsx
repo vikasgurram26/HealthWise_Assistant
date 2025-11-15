@@ -6,6 +6,7 @@ import {
   Languages,
   LayoutGrid,
   LifeBuoy,
+  MessageCircle,
   Settings,
   ShieldCheck,
   Stethoscope,
@@ -29,6 +30,11 @@ const navItems = [
     href: '/dashboard',
     icon: LayoutGrid,
     label: 'Dashboard',
+  },
+  {
+    href: '/chatbot',
+    icon: MessageCircle,
+    label: 'AI Chatbot',
   },
   {
     href: '/symptom-guidance',
