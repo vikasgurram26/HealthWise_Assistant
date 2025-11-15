@@ -13,7 +13,7 @@ import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card'
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="space-y-2">
