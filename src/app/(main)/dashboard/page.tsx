@@ -12,17 +12,14 @@ import { RecentAlerts } from '@/components/dashboard/recent-alerts';
 import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card';
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
-import { getTranslations } from '@/lib/server-i18n';
 
 export default async function DashboardPage() {
-  const { t } = await getTranslations();
-
   return (
     <div className="flex flex-col gap-6">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">{t('dashboardTitle')}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Health Dashboard</h1>
         <p className="text-muted-foreground">
-          {t('dashboardDescription')}
+          Your central hub for health statistics, alerts, and tools.
         </p>
       </div>
 

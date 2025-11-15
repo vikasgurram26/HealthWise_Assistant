@@ -32,33 +32,26 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '../ui/button';
-import { useTranslation } from 'react-i18next';
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { t, i18n } = useTranslation();
 
   const navItems = [
-    { href: '/dashboard', icon: LayoutGrid, label: t('dashboard') },
-    { href: '/chatbot', icon: MessageCircle, label: t('aiChatbot') },
-    { href: '/symptom-guidance', icon: HeartPulse, label: t('symptomGuidance') },
-    { href: '/preventive-healthcare', icon: ShieldCheck, label: t('preventiveCare') },
-    { href: '/vaccination-schedules', icon: Syringe, label: t('vaccinations') },
-    { href: '/outbreak-alerts', icon: AlertTriangle, label: t('outbreakAlerts') },
+    { href: '/dashboard', icon: LayoutGrid, label: 'Dashboard' },
+    { href: '/chatbot', icon: MessageCircle, label: 'AI Chatbot' },
+    { href: '/symptom-guidance', icon: HeartPulse, label: 'Symptom Guidance' },
+    { href: '/preventive-healthcare', icon: ShieldCheck, label: 'Preventive Care' },
+    { href: '/vaccination-schedules', icon: Syringe, label: 'Vaccinations' },
+    { href: '/outbreak-alerts', icon: AlertTriangle, label: 'Outbreak Alerts' },
   ];
 
   const bottomNavItems = [
-    { href: '/settings', icon: Settings, label: t('settings') },
-    { href: '/support', icon: LifeBuoy, label: t('support'), disabled: true },
+    { href: '/settings', icon: Settings, label: 'Settings' },
+    { href: '/support', icon: LifeBuoy, label: 'Support', disabled: true },
   ];
 
   const isActive = (href: string) => {
     return pathname === href;
-  };
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
   };
 
   return (
@@ -74,7 +67,7 @@ export function AppSidebar() {
             <Stethoscope className="size-5" />
           </div>
           <span className="truncate text-lg font-semibold group-data-[collapsible=icon]:hidden">
-            {t('healthwise')}
+            HealthWise
           </span>
         </div>
       </SidebarHeader>
@@ -120,28 +113,28 @@ export function AppSidebar() {
                 <SidebarMenuButton
                   variant="ghost"
                   className="w-full justify-start"
-                  tooltip={{ children: t('language') }}
+                  tooltip={{ children: 'Language' }}
                 >
                   <Languages />
-                  <span>{t('language')}</span>
+                  <span>Language</span>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mb-2 w-56" side="top" align="start">
-                <DropdownMenuItem onClick={() => changeLanguage('en')}>
-                  <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'en' && 'opacity-0')} />
-                  {t('english')}
+                <DropdownMenuItem>
+                  <Check className={cn('mr-2 h-4 w-4')} />
+                  English
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => changeLanguage('es')}>
-                  <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'es' && 'opacity-0')} />
-                  {t('spanish')}
+                <DropdownMenuItem disabled>
+                  <Check className={cn('mr-2 h-4 w-4', 'opacity-0')} />
+                  Spanish
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => changeLanguage('hi')}>
-                  <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'hi' && 'opacity-0')} />
-                  {t('hindi')}
+                <DropdownMenuItem disabled>
+                  <Check className={cn('mr-2 h-4 w-4', 'opacity-0')} />
+                  Hindi
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => changeLanguage('te')}>
-                  <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'te' && 'opacity-0')} />
-                  {t('telugu')}
+                <DropdownMenuItem disabled>
+                  <Check className={cn('mr-2 h-4 w-4', 'opacity-0')} />
+                  Telugu
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

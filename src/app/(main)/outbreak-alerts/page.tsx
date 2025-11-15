@@ -19,10 +19,8 @@ import { AlertCircle, Archive, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { getFullOutbreakAlerts, OutbreakAlert } from '@/lib/outbreak-alerts';
 import { Badge } from '@/components/ui/badge';
 import useLocalStorage from '@/hooks/use-local-storage';
-import { useTranslation } from 'react-i18next';
 
 export default function OutbreakAlertsPage() {
-  const { t } = useTranslation();
   const [location, setLocation] = useLocalStorage('outbreak-location', '');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<OutbreakAlert[] | null>(null);
@@ -33,8 +31,8 @@ export default function OutbreakAlertsPage() {
     if (!location) {
       toast({
         variant: 'destructive',
-        title: t('missingInfo'),
-        description: t('enterLocation'),
+        title: 'Missing Information',
+        description: 'Please enter a location.',
       });
       return;
     }
@@ -48,8 +46,8 @@ export default function OutbreakAlertsPage() {
       console.error('Error getting outbreak alerts:', error);
       toast({
         variant: 'destructive',
-        title: t('errorOccurred'),
-        description: t('failedToGetOutbreakAlerts'),
+        title: 'An Error Occurred',
+        description: 'Failed to get outbreak alerts.',
       });
     } finally {
       setIsLoading(false);
@@ -87,18 +85,18 @@ export default function OutbreakAlertsPage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>{t('outbreakAlertsTitle')}</CardTitle>
+          <CardTitle>Outbreak Alerts</CardTitle>
           <CardDescription>
-            {t('outbreakAlertsDescription')}
+            Check for infectious disease outbreak alerts in your area.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="location">{t('locationLabel')}</Label>
+              <Label htmlFor="location">Location</Label>
               <Input
                 id="location"
-                placeholder={t('locationPlaceholder')}
+                placeholder="e.g., New York, NY"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 disabled={isLoading}
@@ -107,7 +105,7 @@ export default function OutbreakAlertsPage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? t('checkingForAlerts') : t('checkAlerts')}
+              {isLoading ? 'Checking for Alerts...' : 'Check Alerts'}
             </Button>
           </CardFooter>
         </form>
@@ -129,8 +127,8 @@ export default function OutbreakAlertsPage() {
             <CardHeader>
               <CardTitle>
                 {activeAlerts && activeAlerts.length > 0
-                  ? t('activeOutbreakAlertsFor', { location })
-                  : t('noActiveOutbreakAlertsFor', { location })}
+                  ? `Active Outbreak Alerts for ${location}`
+                  : `No Active Outbreak Alerts for ${location}`}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -148,7 +146,7 @@ export default function OutbreakAlertsPage() {
                         <Badge
                           variant={getAlertBadgeVariant(alert.alertLevel)}
                         >
-                          {t(`${alert.alertLevel.toLowerCase()}Alert`)}
+                          {alert.alertLevel} Alert
                         </Badge>
                       </div>
                     </CardHeader>
@@ -160,7 +158,7 @@ export default function OutbreakAlertsPage() {
                   </Card>
                 ))
               ) : (
-                <p>{t('noActiveAlerts')}</p>
+                <p>No active alerts were found for this location.</p>
               )}
             </CardContent>
           </Card>
@@ -172,7 +170,7 @@ export default function OutbreakAlertsPage() {
                 <div className="flex items-center gap-3">
                   <Archive className="size-6 text-muted-foreground" />
                   <CardTitle>
-                    {t('pastOutbreakAlertsFor', { location })}
+                    Past Outbreak Alerts for {location}
                   </CardTitle>
                 </div>
               </CardHeader>
@@ -190,7 +188,7 @@ export default function OutbreakAlertsPage() {
                         <Badge
                           variant='outline'
                         >
-                          {t(`${alert.alertLevel.toLowerCase()}Alert`)}{t('pastAlert')}
+                          {alert.alertLevel} Alert (Past)
                         </Badge>
                       </div>
                     </CardHeader>

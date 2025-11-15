@@ -12,10 +12,8 @@ import { chat, ChatMessage } from '@/ai/flows/chat-flow';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { useTranslation } from 'react-i18next';
 
 export default function ChatbotPage() {
-  const { t } = useTranslation();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +49,7 @@ export default function ChatbotPage() {
       console.error('Error getting response from AI', error);
       const errorMessage: ChatMessage = {
         role: 'model',
-        content: [{ text: t('sorrySomethingWentWrong') }],
+        content: [{ text: 'Sorry, something went wrong.' }],
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -62,8 +60,8 @@ export default function ChatbotPage() {
   return (
     <Card className="h-[calc(100vh-8rem)] flex flex-col">
       <CardHeader>
-        <CardTitle>{t('chatbotTitle')}</CardTitle>
-        <CardDescription>{t('chatbotDescription')}</CardDescription>
+        <CardTitle>AI Chatbot</CardTitle>
+        <CardDescription>Chat with our AI assistant for health information.</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col gap-4 overflow-hidden">
         <ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>
@@ -136,12 +134,12 @@ export default function ChatbotPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && !isLoading && handleSend()}
-            placeholder={t('typeYourMessage')}
+            placeholder="Type your message..."
             disabled={isLoading}
             className="flex-grow"
           />
           <Button onClick={handleSend} disabled={isLoading}>
-            {t('send')}
+            Send
           </Button>
         </div>
       </CardContent>

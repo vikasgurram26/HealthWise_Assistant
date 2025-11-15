@@ -34,22 +34,20 @@ import {
 } from '@/ai/flows/vaccination-schedule-flow';
 import { Syringe } from 'lucide-react';
 import { Label } from '@/components/ui/label';
-import { useTranslation } from 'react-i18next';
 
 export default function VaccinationSchedulesPage() {
-  const { t } = useTranslation();
   const [ageGroup, setAgeGroup] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<Vaccination[] | null>(null);
   const { toast } = useToast();
 
   const ageGroups = [
-    { value: 'Infant (0-12 months)', label: t('infant') },
-    { value: 'Child (1-6 years)', label: t('child1_6') },
-    { value: 'Child (7-12 years)', label: t('child7_12') },
-    { value: 'Adolescent (13-18 years)', label: t('adolescent') },
-    { value: 'Adult (19-64 years)', label: t('adult') },
-    { value: 'Senior (65+ years)', label: t('senior') },
+    { value: 'Infant (0-12 months)', label: 'Infant (0-12 months)' },
+    { value: 'Child (1-6 years)', label: 'Child (1-6 years)' },
+    { value: 'Child (7-12 years)', label: 'Child (7-12 years)' },
+    { value: 'Adolescent (13-18 years)', label: 'Adolescent (13-18 years)' },
+    { value: 'Adult (19-64 years)', label: 'Adult (19-64 years)' },
+    { value: 'Senior (65+ years)', label: 'Senior (65+ years)' },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,8 +55,8 @@ export default function VaccinationSchedulesPage() {
     if (!ageGroup) {
       toast({
         variant: 'destructive',
-        title: t('missingInfo'),
-        description: t('selectAgeGroup'),
+        title: 'Missing Information',
+        description: 'Please select an age group.',
       });
       return;
     }
@@ -72,8 +70,8 @@ export default function VaccinationSchedulesPage() {
       console.error('Error getting vaccination schedule:', error);
       toast({
         variant: 'destructive',
-        title: t('errorOccurred'),
-        description: t('failedToGetAISchedule'),
+        title: 'An Error Occurred',
+        description: 'Failed to get AI-powered schedule.',
       });
     } finally {
       setIsLoading(false);
@@ -88,22 +86,22 @@ export default function VaccinationSchedulesPage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>{t('vaccinationsTitle')}</CardTitle>
+          <CardTitle>Vaccination Schedules</CardTitle>
           <CardDescription>
-            {t('vaccinationsDescription')}
+            Get AI-powered vaccination recommendations based on age.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="age-group">{t('ageGroupLabel')}</Label>
+              <Label htmlFor="age-group">Age Group</Label>
               <Select
                 value={ageGroup}
                 onValueChange={setAgeGroup}
                 disabled={isLoading}
               >
                 <SelectTrigger id="age-group" className="w-full md:w-1/2">
-                  <SelectValue placeholder={t('ageGroupPlaceholder')} />
+                  <SelectValue placeholder="Select an age group" />
                 </SelectTrigger>
                 <SelectContent>
                   {ageGroups.map((group) => (
@@ -117,7 +115,7 @@ export default function VaccinationSchedulesPage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? t('gettingSchedule') : t('getSchedule')}
+              {isLoading ? 'Getting Schedule...' : 'Get Schedule'}
             </Button>
           </CardFooter>
         </form>
@@ -126,7 +124,7 @@ export default function VaccinationSchedulesPage() {
       {isLoading && (
         <Card>
           <CardHeader>
-            <CardTitle>{t('loadingVaccinationSchedule')}</CardTitle>
+            <CardTitle>Loading Vaccination Schedule...</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -143,16 +141,16 @@ export default function VaccinationSchedulesPage() {
           <CardHeader>
             <div className="flex items-center gap-3">
               <Syringe className="size-6 text-primary" />
-              <CardTitle>{t('recommendedVaccinationsFor', { ageGroup: getAgeGroupLabel(ageGroup) })}</CardTitle>
+              <CardTitle>Recommended Vaccinations for {getAgeGroupLabel(ageGroup)}</CardTitle>
             </div>
           </CardHeader>
           <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>{t('vaccine')}</TableHead>
-                  <TableHead>{t('purpose')}</TableHead>
-                  <TableHead>{t('schedule')}</TableHead>
+                  <TableHead>Vaccine</TableHead>
+                  <TableHead>Purpose</TableHead>
+                  <TableHead>Schedule</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

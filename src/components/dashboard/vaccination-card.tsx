@@ -10,11 +10,9 @@ import {
 } from '@/components/ui/card';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import { ArrowRight, Syringe } from 'lucide-react';
 
 export function VaccinationCard() {
-  const { t } = useTranslation();
 
   return (
     <Card>
@@ -23,16 +21,16 @@ export function VaccinationCard() {
           <Syringe />
         </div>
         <div className="flex-1">
-          <CardTitle className="text-lg">{t('vaccinations')}</CardTitle>
+          <CardTitle className="text-lg">Vaccinations</CardTitle>
         </div>
       </CardHeader>
       <CardContent>
         <p className="mb-4 text-sm text-muted-foreground">
-          {t('vaccinationCardDescription')}
+          Find recommended vaccination schedules for different age groups.
         </p>
         <Button asChild className="w-full">
           <Link href="/vaccination-schedules">
-            {t('viewSchedules')}
+            View Schedules
             <ArrowRight className="ml-2" />
           </Link>
         </Button>

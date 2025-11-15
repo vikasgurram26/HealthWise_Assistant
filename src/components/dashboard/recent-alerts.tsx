@@ -14,7 +14,6 @@ import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '../ui/skeleton';
 
@@ -43,7 +42,6 @@ const getAlertBadgeVariant = (level: 'High' | 'Medium' | 'Low') => {
 };
 
 export function RecentAlerts() {
-  const { t } = useTranslation();
   const [activeAlerts, setActiveAlerts] = useState<OutbreakAlert[] | null>(null);
 
   useEffect(() => {
@@ -63,8 +61,8 @@ export function RecentAlerts() {
   return (
     <Card className="flex h-full flex-col">
       <CardHeader>
-        <CardTitle>{t('recentOutbreakAlerts')}</CardTitle>
-        <CardDescription>{t('recentOutbreakAlertsDescription')}</CardDescription>
+        <CardTitle>Recent Outbreak Alerts</CardTitle>
+        <CardDescription>A summary of active health advisories.</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow space-y-4">
         {activeAlerts.length > 0 ? (
@@ -78,7 +76,7 @@ export function RecentAlerts() {
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold">{alert.disease}</h4>
                   <Badge variant={getAlertBadgeVariant(alert.alertLevel)}>
-                    {t(`${alert.alertLevel.toLowerCase()}Alert`)}
+                    {alert.alertLevel} Alert
                   </Badge>
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -90,14 +88,14 @@ export function RecentAlerts() {
           ))
         ) : (
           <div className="flex h-full items-center justify-center">
-            <p className="text-muted-foreground">{t('noActiveAlerts')}</p>
+            <p className="text-muted-foreground">No active alerts were found for this location.</p>
           </div>
         )}
       </CardContent>
       <div className="border-t p-4">
         <Button asChild variant="outline" size="sm" className="w-full">
           <Link href="/outbreak-alerts">
-            {t('viewAllAlerts')}
+            View All Alerts
             <ArrowRight className="ml-2" />
           </Link>
         </Button>

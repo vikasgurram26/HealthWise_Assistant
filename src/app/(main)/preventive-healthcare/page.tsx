@@ -21,10 +21,8 @@ import {
 } from '@/ai/flows/preventive-healthcare-info';
 import { ShieldCheck } from 'lucide-react';
 import useLocalStorage from '@/hooks/use-local-storage';
-import { useTranslation } from 'react-i18next';
 
 export default function PreventiveHealthcarePage() {
-  const { t } = useTranslation();
   const [disease, setDisease] = useLocalStorage('preventive-disease', '');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<PreventiveHealthcareInfoOutput | null>(
@@ -37,8 +35,8 @@ export default function PreventiveHealthcarePage() {
     if (!disease) {
       toast({
         variant: 'destructive',
-        title: t('missingInfo'),
-        description: t('enterDisease'),
+        title: 'Missing Information',
+        description: 'Please enter a disease or condition.',
       });
       return;
     }
@@ -52,8 +50,8 @@ export default function PreventiveHealthcarePage() {
       console.error('Error getting preventive healthcare info:', error);
       toast({
         variant: 'destructive',
-        title: t('errorOccurred'),
-        description: t('failedToGetAIInfo'),
+        title: 'An Error Occurred',
+        description: 'Failed to get AI-powered information.',
       });
     } finally {
       setIsLoading(false);
@@ -64,18 +62,18 @@ export default function PreventiveHealthcarePage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>{t('preventiveCareTitle')}</CardTitle>
+          <CardTitle>Preventive Healthcare</CardTitle>
           <CardDescription>
-            {t('preventiveCareDescription')}
+            Get AI-powered preventive care information for specific diseases.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="disease">{t('diseaseConditionLabel')}</Label>
+              <Label htmlFor="disease">Disease / Condition</Label>
               <Input
                 id="disease"
-                placeholder={t('diseaseConditionPlaceholder')}
+                placeholder="e.g., Diabetes, Hypertension"
                 value={disease}
                 onChange={(e) => setDisease(e.target.value)}
                 disabled={isLoading}
@@ -84,7 +82,7 @@ export default function PreventiveHealthcarePage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? t('gettingInformation') : t('getInformation')}
+              {isLoading ? 'Getting Information...' : 'Get Information'}
             </Button>
           </CardFooter>
         </form>
@@ -93,7 +91,7 @@ export default function PreventiveHealthcarePage() {
       {isLoading && (
         <Card>
           <CardHeader>
-            <CardTitle>{t('loadingPreventiveMeasures')}</CardTitle>
+            <CardTitle>Loading Preventive Measures...</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-4 w-[250px]" />
@@ -112,18 +110,18 @@ export default function PreventiveHealthcarePage() {
             <div className="flex items-center gap-3">
               <ShieldCheck className="size-6 text-primary" />
               <CardTitle>
-                {t('preventiveGuidanceFor', { disease })}
+                Preventive Guidance for {disease}
               </CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="mb-2 text-lg font-semibold">{t('preventiveMeasures')}</h3>
+              <h3 className="mb-2 text-lg font-semibold">Preventive Measures</h3>
               <p className="text-sm text-muted-foreground">{result.preventiveMeasures}</p>
             </div>
             <div>
               <h3 className="mb-2 text-lg font-semibold">
-                {t('applicationGuidance')}
+                Application Guidance
               </h3>
               <p className="text-sm text-muted-foreground">
                 {result.applicationGuidance}

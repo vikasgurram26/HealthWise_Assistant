@@ -9,11 +9,9 @@ import {
   } from '@/components/ui/card';
   import { getGlobalHealthData, type GlobalHealthData } from '@/lib/data';
   import { Users, AlertCircle, ShieldCheck, HeartPulse } from 'lucide-react';
-  import { useTranslation } from 'react-i18next';
   import { useEffect, useState } from 'react';
   
   export function StatCards() {
-    const { t } = useTranslation();
     const [data, setData] = useState<GlobalHealthData | null>(null);
 
     useEffect(() => {
@@ -33,30 +31,30 @@ import {
 
     const stats = [
       {
-        title: t('totalCases'),
+        title: 'Total Cases',
         value: data.cases.toLocaleString(),
-        change: `+${data.todayCases.toLocaleString()} ${t('today')}`,
+        change: `+${data.todayCases.toLocaleString()} Today`,
         icon: <Users className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-red-500',
       },
       {
-        title: t('totalDeaths'),
+        title: 'Total Deaths',
         value: data.deaths.toLocaleString(),
-        change: `+${data.todayDeaths.toLocaleString()} ${t('today')}`,
+        change: `+${data.todayDeaths.toLocaleString()} Today`,
         icon: <AlertCircle className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-red-500',
       },
       {
-        title: t('totalRecovered'),
+        title: 'Total Recovered',
         value: data.recovered.toLocaleString(),
-        change: `+${data.todayRecovered.toLocaleString()} ${t('today')}`,
+        change: `+${data.todayRecovered.toLocaleString()} Today`,
         icon: <ShieldCheck className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-green-500',
       },
       {
-        title: t('activeCases'),
+        title: 'Active Cases',
         value: data.active.toLocaleString(),
-        change: t('worldwide'),
+        change: 'Worldwide',
         icon: <HeartPulse className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-muted-foreground',
       },

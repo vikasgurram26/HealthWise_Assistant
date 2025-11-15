@@ -10,11 +10,9 @@ import {
 } from '@/components/ui/card';
 import { Button } from '../ui/button';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 export function PreventiveCareCard() {
-  const { t } = useTranslation();
 
   return (
     <Card>
@@ -23,16 +21,16 @@ export function PreventiveCareCard() {
           <ShieldCheck />
         </div>
         <div className="flex-1">
-          <CardTitle className="text-lg">{t('preventiveCare')}</CardTitle>
+          <CardTitle className="text-lg">Preventive Care</CardTitle>
         </div>
       </CardHeader>
       <CardContent>
         <p className="mb-4 text-sm text-muted-foreground">
-          {t('preventiveCareCardDescription')}
+          Learn about preventive measures for various health conditions.
         </p>
         <Button asChild className="w-full">
           <Link href="/preventive-healthcare">
-            {t('getPreventionTips')}
+            Get Prevention Tips
             <ArrowRight className="ml-2" />
           </Link>
         </Button>
