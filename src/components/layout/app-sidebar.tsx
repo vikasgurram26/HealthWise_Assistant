@@ -32,31 +32,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/navigation';
 
 export function AppSidebar() {
-  const { t, i18n } = useTranslation();
   const pathname = usePathname();
-  const router = useRouter();
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    router.refresh(); // Refresh the page to apply new language from server
-  };
 
   const navItems = [
-    { href: '/dashboard', icon: LayoutGrid, label: t('sidebar.dashboard') },
-    { href: '/chatbot', icon: MessageCircle, label: t('sidebar.aiChatbot') },
-    { href: '/symptom-guidance', icon: HeartPulse, label: t('sidebar.symptomGuidance') },
-    { href: '/preventive-healthcare', icon: ShieldCheck, label: t('sidebar.preventiveCare') },
-    { href: '/vaccination-schedules', icon: Syringe, label: t('sidebar.vaccinations') },
-    { href: '/outbreak-alerts', icon: AlertTriangle, label: t('sidebar.outbreakAlerts') },
+    { href: '/dashboard', icon: LayoutGrid, label: 'Dashboard' },
+    { href: '/chatbot', icon: MessageCircle, label: 'AI Chatbot' },
+    { href: '/symptom-guidance', icon: HeartPulse, label: 'Symptom Guidance' },
+    { href: '/preventive-healthcare', icon: ShieldCheck, label: 'Preventive Care' },
+    { href: '/vaccination-schedules', icon: Syringe, label: 'Vaccinations' },
+    { href: '/outbreak-alerts', icon: AlertTriangle, label: 'Outbreak Alerts' },
   ];
 
   const bottomNavItems = [
-    { href: '/settings', icon: Settings, label: t('sidebar.settings') },
-    { href: '/support', icon: LifeBuoy, label: t('sidebar.support'), disabled: true },
+    { href: '/settings', icon: Settings, label: 'Settings' },
+    { href: '/support', icon: LifeBuoy, label: 'Support', disabled: true },
   ];
 
   const languages = [
@@ -82,7 +73,7 @@ export function AppSidebar() {
             <Stethoscope className="size-5" />
           </div>
           <span className="truncate text-lg font-semibold group-data-[collapsible=icon]:hidden">
-            {t('appTitle')}
+            HealthWise
           </span>
         </div>
       </SidebarHeader>
@@ -128,16 +119,16 @@ export function AppSidebar() {
                 <SidebarMenuButton
                   variant="ghost"
                   className="w-full justify-start"
-                  tooltip={{ children: t('sidebar.language') }}
+                  tooltip={{ children: 'Language' }}
                 >
                   <Languages />
-                  <span>{t('sidebar.language')}</span>
+                  <span>Language</span>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mb-2 w-56" side="top" align="start">
                 {languages.map(lang => (
-                  <DropdownMenuItem key={lang.code} onSelect={() => changeLanguage(lang.code)}>
-                    <Check className={cn('mr-2 h-4 w-4', i18n.language === lang.code ? 'opacity-100' : 'opacity-0')} />
+                  <DropdownMenuItem key={lang.code}>
+                    <Check className={cn('mr-2 h-4 w-4', 'en' === lang.code ? 'opacity-100' : 'opacity-0')} />
                     {lang.name}
                   </DropdownMenuItem>
                 ))}

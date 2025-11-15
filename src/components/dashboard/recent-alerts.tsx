@@ -13,10 +13,8 @@ import { Button } from '../ui/button';
 import { ArrowRight, Newspaper } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '../ui/skeleton';
-import { useTranslation } from 'react-i18next';
 
 export function RecentAlerts() {
-  const { t } = useTranslation();
   const [recentAlerts, setRecentAlerts] = useState<OutbreakAlert[] | null>(null);
 
   useEffect(() => {
@@ -34,8 +32,8 @@ export function RecentAlerts() {
   return (
     <Card className="flex h-full flex-col">
       <CardHeader>
-        <CardTitle>{t('recentAlerts.title')}</CardTitle>
-        <p className="text-sm text-muted-foreground">{t('recentAlerts.description')}</p>
+        <CardTitle>Recent Outbreak Alerts</CardTitle>
+        <p className="text-sm text-muted-foreground">Latest news from the WHO.</p>
       </CardHeader>
       <CardContent className="flex-grow space-y-4">
         {recentAlerts.length > 0 ? (
@@ -61,14 +59,14 @@ export function RecentAlerts() {
           ))
         ) : (
           <div className="flex h-full items-center justify-center">
-            <p className="text-muted-foreground">{t('recentAlerts.fetchError')}</p>
+            <p className="text-muted-foreground">Could not fetch recent alerts.</p>
           </div>
         )}
       </CardContent>
       <div className="border-t p-4">
         <Button asChild variant="outline" size="sm" className="w-full">
           <Link href="/outbreak-alerts">
-            {t('recentAlerts.viewAll')}
+            View All Alerts
             <ArrowRight className="ml-2" />
           </Link>
         </Button>
