@@ -14,10 +14,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
-import { AlertCircle, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { AlertCircle, Archive, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { getFullOutbreakAlerts, OutbreakAlert } from '@/lib/outbreak-alerts';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
 
 export default function OutbreakAlertsPage() {
   const [location, setLocation] = useState('');
@@ -53,7 +52,7 @@ export default function OutbreakAlertsPage() {
       setIsLoading(false);
     }
   };
-  
+
   const getAlertIcon = (level: 'High' | 'Medium' | 'Low') => {
     switch (level) {
       case 'High':
@@ -64,19 +63,22 @@ export default function OutbreakAlertsPage() {
         return <ShieldCheck className="size-6 text-green-500" />;
     }
   };
-  
+
   const getAlertBadgeVariant = (level: 'High' | 'Medium' | 'Low') => {
     switch (level) {
-        case 'High':
-            return 'destructive';
-        case 'Medium':
-            return 'secondary';
-        case 'Low':
-            return 'default';
-        default:
-            return 'outline';
+      case 'High':
+        return 'destructive';
+      case 'Medium':
+        return 'secondary';
+      case 'Low':
+        return 'default';
+      default:
+        return 'outline';
     }
-  }
+  };
+
+  const activeAlerts = results?.filter((alert) => alert.status === 'Active');
+  const pastAlerts = results?.filter((alert) => alert.status === 'Past');
 
   return (
     <div className="grid gap-6">
@@ -85,7 +87,7 @@ export default function OutbreakAlertsPage() {
           <CardTitle>Outbreak Alerts</CardTitle>
           <CardDescription>
             Stay informed about disease outbreaks in your area. Enter a location
-            to check for current alerts.
+            to check for current and past alerts.
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -119,37 +121,88 @@ export default function OutbreakAlertsPage() {
       )}
 
       {results && (
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              {results.length > 0
-                ? `Outbreak Alerts for ${location}`
-                : `No Outbreak Alerts for ${location}`}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {results.length > 0 ? (
-              results.map((alert, index) => (
-                <Card key={index}>
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                        <div className='flex items-center gap-3'>
-                            {getAlertIcon(alert.alertLevel)}
-                            <CardTitle className="text-xl">{alert.disease}</CardTitle>
+        <>
+          {/* Active Alerts */}
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                {activeAlerts && activeAlerts.length > 0
+                  ? `Active Outbreak Alerts for ${location}`
+                  : `No Active Outbreak Alerts for ${location}`}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {activeAlerts && activeAlerts.length > 0 ? (
+                activeAlerts.map((alert, index) => (
+                  <Card key={`active-${index}`}>
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          {getAlertIcon(alert.alertLevel)}
+                          <CardTitle className="text-xl">
+                            {alert.disease}
+                          </CardTitle>
                         </div>
-                        <Badge variant={getAlertBadgeVariant(alert.alertLevel)}>{alert.alertLevel} Alert</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{alert.description}</p>
-                  </CardContent>
-                </Card>
-              ))
-            ) : (
-              <p>No active alerts found for the specified location.</p>
-            )}
-          </CardContent>
-        </Card>
+                        <Badge
+                          variant={getAlertBadgeVariant(alert.alertLevel)}
+                        >
+                          {alert.alertLevel} Alert
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">
+                        {alert.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))
+              ) : (
+                <p>No active alerts found for the specified location.</p>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Past Alerts */}
+          {pastAlerts && pastAlerts.length > 0 && (
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <Archive className="size-6 text-muted-foreground" />
+                  <CardTitle>
+                    Past Outbreak Alerts for {location}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {pastAlerts.map((alert, index) => (
+                  <Card key={`past-${index}`}>
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          {getAlertIcon(alert.alertLevel)}
+                          <CardTitle className="text-xl">
+                            {alert.disease}
+                          </CardTitle>
+                        </div>
+                        <Badge
+                          variant='outline'
+                        >
+                          {alert.alertLevel} Alert (Past)
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">
+                        {alert.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </CardContent>
+            </Card>
+          )}
+        </>
       )}
     </div>
   );
