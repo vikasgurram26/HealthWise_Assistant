@@ -120,7 +120,7 @@ export default function OutbreakAlertsPage() {
         </Card>
       )}
 
-      {results && (
+      {results && !isLoading && (
         <>
           {/* Active Alerts */}
           <Card>
