@@ -31,14 +31,14 @@ export default function DashboardPage() {
 
       {/* Stat Cards */}
       <Suspense fallback={<StatCardsLoading />}>
-        <StatCards />
+        <StatCards t={t} />
       </Suspense>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Left Column */}
         <div className="flex flex-col gap-6 lg:col-span-2">
           <Suspense fallback={<Skeleton className="h-64" />}>
-            <RecentAlerts />
+            <RecentAlerts t={t} />
           </Suspense>
         </div>
 

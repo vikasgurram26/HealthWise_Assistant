@@ -8,11 +8,11 @@ import {
 } from '@/components/ui/card';
 import { getFullOutbreakAlerts, OutbreakAlert } from '@/lib/outbreak-alerts';
 import { AlertCircle, ShieldAlert, ShieldCheck } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
 import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { ArrowRight } from 'lucide-react';
+import { TFunction } from 'i18next';
 
 const getAlertIcon = (level: 'High' | 'Medium' | 'Low') => {
   switch (level) {
@@ -38,8 +38,7 @@ const getAlertBadgeVariant = (level: 'High' | 'Medium' | 'Low') => {
   }
 };
 
-export async function RecentAlerts() {
-  const { t } = useTranslation();
+export async function RecentAlerts({ t }: { t: TFunction<any, undefined> }) {
   // Fetch alerts for a common area or all active alerts to show on dashboard
   const allAlerts = await getFullOutbreakAlerts('');
   const activeAlerts = allAlerts
@@ -63,8 +62,8 @@ export async function RecentAlerts() {
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold">{alert.disease}</h4>
-                  <Badge variant={getAlertBadgeVariant(alert.alertLevel)}>
-                    {t(`${alert.alertLevel.toLowerCase()}Alert`)}
+                  <Badge variant={getAlertBadgeVariant(alert.level)}>
+                    {t(`${alert.level.toLowerCase()}Alert`)}
                   </Badge>
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">

@@ -7,11 +7,10 @@ import {
   } from '@/components/ui/card';
   import { getGlobalHealthData } from '@/lib/data';
   import { Users, AlertCircle, ShieldCheck, HeartPulse } from 'lucide-react';
-  import { useTranslation } from 'react-i18next';
+  import { TFunction } from 'i18next';
   
-  export async function StatCards() {
+  export async function StatCards({ t }: { t: TFunction<any, undefined> }) {
     const data = await getGlobalHealthData();
-    const { t } = useTranslation();
   
     const stats = [
       {
