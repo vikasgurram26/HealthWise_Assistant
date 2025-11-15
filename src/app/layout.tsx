@@ -1,7 +1,6 @@
 
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import i18n from '@/lib/i18n';
 import { getTranslations } from '@/lib/server-i18n';
 import { ClientProviders } from './client-providers';
 
@@ -14,13 +13,15 @@ export async function generateMetadata() {
 }
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { i18n } = await getTranslations();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={i18n.language} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
