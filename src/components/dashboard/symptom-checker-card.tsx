@@ -4,15 +4,16 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ArrowRight, HeartPulse } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function SymptomCheckerCard() {
+  const { t } = useTranslation();
 
   return (
     <Card>
@@ -21,16 +22,16 @@ export function SymptomCheckerCard() {
           <HeartPulse />
         </div>
         <div className="flex-1">
-          <CardTitle className="text-lg">Symptom Guidance</CardTitle>
+          <CardTitle className="text-lg">{t('symptomCheckerCard.title')}</CardTitle>
         </div>
       </CardHeader>
       <CardContent>
         <p className="mb-4 text-sm text-muted-foreground">
-          Get guidance on possible conditions based on your symptoms.
+          {t('symptomCheckerCard.description')}
         </p>
         <Button asChild className="w-full">
           <Link href="/symptom-guidance">
-            Check Symptoms
+            {t('symptomCheckerCard.button')}
             <ArrowRight className="ml-2" />
           </Link>
         </Button>

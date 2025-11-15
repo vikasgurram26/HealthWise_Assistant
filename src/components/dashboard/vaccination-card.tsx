@@ -4,15 +4,16 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { ArrowRight, Syringe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function VaccinationCard() {
+  const { t } = useTranslation();
 
   return (
     <Card>
@@ -21,16 +22,16 @@ export function VaccinationCard() {
           <Syringe />
         </div>
         <div className="flex-1">
-          <CardTitle className="text-lg">Vaccinations</CardTitle>
+          <CardTitle className="text-lg">{t('vaccinationCard.title')}</CardTitle>
         </div>
       </CardHeader>
       <CardContent>
         <p className="mb-4 text-sm text-muted-foreground">
-          Find recommended vaccination schedules for different age groups.
+          {t('vaccinationCard.description')}
         </p>
         <Button asChild className="w-full">
           <Link href="/vaccination-schedules">
-            View Schedules
+            {t('vaccinationCard.button')}
             <ArrowRight className="ml-2" />
           </Link>
         </Button>
