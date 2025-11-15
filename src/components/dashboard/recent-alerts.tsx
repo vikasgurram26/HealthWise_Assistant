@@ -62,8 +62,8 @@ export async function RecentAlerts({ t }: { t: TFunction<any, undefined> }) {
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <h4 className="font-semibold">{alert.disease}</h4>
-                  <Badge variant={getAlertBadgeVariant(alert.level)}>
-                    {t(`${alert.level.toLowerCase()}Alert`)}
+                  <Badge variant={getAlertBadgeVariant(alert.alertLevel)}>
+                    {t(`${alert.alertLevel.toLowerCase()}Alert`)}
                   </Badge>
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">
