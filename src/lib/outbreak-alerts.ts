@@ -11,27 +11,33 @@ const mockAlerts: OutbreakAlert[] = [
     {
         disease: 'Influenza (Flu)',
         alertLevel: 'High',
-        description: 'Seasonal flu activity is high. Widespread cases reported.',
+        description: 'Seasonal flu activity is high. Widespread cases reported. Vaccination is highly recommended.',
         affectedAreas: ['new york', 'los angeles', 'chicago'],
     },
     {
         disease: 'COVID-19',
         alertLevel: 'Medium',
-        description: 'New variant seeing a slight increase in cases. Monitor symptoms.',
+        description: 'A new variant is causing a slight increase in cases. Monitor symptoms and consider wearing a mask in crowded indoor spaces.',
         affectedAreas: ['new york', 'seattle'],
     },
     {
         disease: 'Norovirus',
         alertLevel: 'Low',
-        description: 'Localized outbreaks in some communities. Practice good hygiene.',
+        description: 'Localized outbreaks have been reported in some communities. Practice good hand hygiene to prevent infection.',
         affectedAreas: ['chicago'],
+    },
+     {
+        disease: 'West Nile Virus',
+        alertLevel: 'Low',
+        description: 'Mosquito activity is present. Use insect repellent and remove standing water to reduce risk.',
+        affectedAreas: ['los angeles', 'miami'],
     },
 ];
 
 /**
- * Fetches outbreak alerts for a given location.
+ * Fetches outbreak alerts for a given location for use in Genkit tools.
  * @param location The location to search for alerts.
- * @returns A promise that resolves to an array of outbreak alerts.
+ * @returns A promise that resolves to an array of partial outbreak alerts.
  */
 export async function getOutbreakAlerts(location: string): Promise<Partial<OutbreakAlert>[]> {
     const locationLower = location.toLowerCase();
@@ -41,4 +47,17 @@ export async function getOutbreakAlerts(location: string): Promise<Partial<Outbr
 
     // The tool only needs the disease and alert level.
     return alerts.map(({ disease, alertLevel }) => ({ disease, alertLevel }));
+}
+
+/**
+ * Fetches full outbreak alert details for a given location for UI display.
+ * @param location The location to search for alerts.
+ * @returns A promise that resolves to an array of full outbreak alerts.
+ */
+export async function getFullOutbreakAlerts(location: string): Promise<OutbreakAlert[]> {
+    'use server';
+    const locationLower = location.toLowerCase();
+    return mockAlerts.filter(alert =>
+        alert.affectedAreas.some(area => locationLower.includes(area))
+    );
 }
