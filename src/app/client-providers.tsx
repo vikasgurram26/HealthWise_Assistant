@@ -21,3 +21,4 @@ export function ClientProviders({ children, i18n, lang }: { children: ReactNode,
     </I18nextProvider>
   );
 }
+

@@ -2,7 +2,6 @@
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { getTranslations, getLang } from '@/lib/server-i18n';
-import i18next from 'i18next';
 import { ClientProviders } from './client-providers';
 import { dir } from 'i18next';
 
@@ -21,9 +20,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const lang = await getLang();
-
-  // This is the server-side i18n instance
-  const i18n = await getTranslations();
+  const { i18n } = await getTranslations();
 
   return (
     <html lang={lang} dir={dir(lang)} suppressHydrationWarning>
