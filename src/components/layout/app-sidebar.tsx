@@ -135,6 +135,14 @@ export function AppSidebar() {
                   <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'es' && 'opacity-0')} />
                   {t('spanish')}
                 </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => changeLanguage('hi')}>
+                  <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'hi' && 'opacity-0')} />
+                  {t('hindi')}
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => changeLanguage('te')}>
+                  <Check className={cn('mr-2 h-4 w-4', i18n.language !== 'te' && 'opacity-0')} />
+                  {t('telugu')}
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
