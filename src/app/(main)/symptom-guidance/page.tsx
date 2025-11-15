@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -21,10 +22,11 @@ import {
 } from '@/ai/flows/symptom-guidance';
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
+import useLocalStorage from '@/hooks/use-local-storage';
 
 export default function SymptomGuidancePage() {
-  const [symptoms, setSymptoms] = useState('');
-  const [location, setLocation] = useState('');
+  const [symptoms, setSymptoms] = useLocalStorage('symptom-symptoms', '');
+  const [location, setLocation] = useLocalStorage('symptom-location', '');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<SymptomGuidanceOutput | null>(null);
   const { toast } = useToast();

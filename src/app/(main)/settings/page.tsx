@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -15,16 +16,17 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
-import { toast as sonnerToast } from 'sonner';
+import useLocalStorage from '@/hooks/use-local-storage';
 
 export default function SettingsPage() {
   const { toast } = useToast();
 
-  const [name, setName] = useState('Example User');
-  const [email, setEmail] = useState('user@example.com');
-  const [outbreakAlerts, setOutbreakAlerts] = useState(true);
-  const [healthTips, setHealthTips] = useState(false);
-  const [newsletter, setNewsletter] = useState(true);
+  const [name, setName] = useLocalStorage('settings-name', 'Example User');
+  const [email, setEmail] = useLocalStorage('settings-email', 'user@example.com');
+  const [outbreakAlerts, setOutbreakAlerts] = useLocalStorage('settings-outbreakAlerts', true);
+  const [healthTips, setHealthTips] = useLocalStorage('settings-healthTips', false);
+  const [newsletter, setNewsletter] = useLocalStorage('settings-newsletter', true);
+
   const [isSaving, setIsSaving] = useState(false);
 
   const handleSaveChanges = (e: React.FormEvent) => {

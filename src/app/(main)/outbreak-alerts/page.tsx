@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -17,9 +18,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { AlertCircle, Archive, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { getFullOutbreakAlerts, OutbreakAlert } from '@/lib/outbreak-alerts';
 import { Badge } from '@/components/ui/badge';
+import useLocalStorage from '@/hooks/use-local-storage';
 
 export default function OutbreakAlertsPage() {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useLocalStorage('outbreak-location', '');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<OutbreakAlert[] | null>(null);
   const { toast } = useToast();

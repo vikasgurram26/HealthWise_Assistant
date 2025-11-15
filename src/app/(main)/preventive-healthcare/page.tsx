@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -19,9 +20,10 @@ import {
   PreventiveHealthcareInfoOutput,
 } from '@/ai/flows/preventive-healthcare-info';
 import { ShieldCheck } from 'lucide-react';
+import useLocalStorage from '@/hooks/use-local-storage';
 
 export default function PreventiveHealthcarePage() {
-  const [disease, setDisease] = useState('');
+  const [disease, setDisease] = useLocalStorage('preventive-disease', '');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<PreventiveHealthcareInfoOutput | null>(
     null
