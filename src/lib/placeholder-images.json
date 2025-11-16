@@ -3,7 +3,7 @@
     {
       "id": "user-avatar",
       "description": "A placeholder avatar for a user profile.",
-      "imageUrl": "https://storage.googleapis.com/gen-ai-studio-image-pipeline-pub/565c589f-b956-42d7-87ac-4a74287c8e03.png",
+      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjMyNTYwOTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
     }
   ]
