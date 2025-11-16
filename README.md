@@ -49,3 +49,62 @@ The visual design is intended to be clean, calming, and trustworthy, reflecting 
 *   **Typography**: The **'PT Sans'** font is used for both headlines and body text. As a humanist sans-serif, it combines a modern, clean look with a touch of warmth and personality, enhancing readability.
 *   **Layout**: The design is fully responsive, adapting cleanly to different screen sizes from mobile to desktop. The layout is organized using cards, clear hierarchies, and ample white space to ensure information is easy to digest.
 *   **Component-Based Design**: By using ShadCN UI, the application maintains a consistent visual language with elements like rounded corners, subtle shadows, and professional-looking inputs and buttons.
+
+---
+
+## 5. Running the Project Locally
+
+To run this project on your local machine, please follow these steps.
+
+### Prerequisites
+
+*   Node.js (v20 or later)
+*   npm (or a compatible package manager)
+
+### 1. Install Dependencies
+
+First, install the necessary Node.js packages. Open a terminal in the project's root directory and run:
+
+```bash
+npm install
+```
+
+### 2. Set Up Environment Variables
+
+The application uses Genkit with Google's Gemini model, which requires an API key.
+
+1.  Create a new file named `.env` in the root of the project.
+2.  Add your Gemini API key to the file:
+
+    ```
+    GEMINI_API_KEY=your_api_key_here
+    ```
+
+    You can obtain an API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
+
+### 3. Run the Development Servers
+
+This project requires two separate development servers to be running simultaneously:
+
+*   The **Next.js server** for the web application UI.
+*   The **Genkit server** to handle the AI flows.
+
+**Terminal 1: Start the Genkit Server**
+
+In your first terminal, run the following command to start the Genkit development server:
+
+```bash
+npm run genkit:dev
+```
+
+This will start the AI backend service and make it available for the Next.js application to call.
+
+**Terminal 2: Start the Next.js Server**
+
+In a second terminal, run the following command to start the Next.js web application:
+
+```bash
+npm run dev
+```
+
+This will start the front-end application, which typically runs on `http://localhost:9002`. You can now open this URL in your web browser to use the HealthWise Assistant.
