@@ -10,17 +10,16 @@ import { useEffect, useState, useMemo } from 'react';
 import { useFirestore } from '@/firebase/provider';
 
 export function useDoc<T extends DocumentData>(
-  collectionName: string,
-  docId: string
+  path: string | null
 ) {
   const firestore = useFirestore();
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
 
   const docRef = useMemo(() => {
-    if (!firestore || !docId) return null;
-    return doc(firestore, collectionName, docId);
-  }, [firestore, collectionName, docId]);
+    if (!firestore || !path) return null;
+    return doc(firestore, path);
+  }, [firestore, path]);
 
   useEffect(() => {
     if (!docRef) {
@@ -39,13 +38,13 @@ export function useDoc<T extends DocumentData>(
         setLoading(false);
       },
       (error) => {
-        console.error(`Error fetching document ${collectionName}/${docId}:`, error);
+        console.error(`Error fetching document ${path}:`, error);
         setLoading(false);
       }
     );
 
     return () => unsubscribe();
-  }, [docRef, collectionName, docId]);
+  }, [docRef, path]);
 
   return { data, loading };
 }

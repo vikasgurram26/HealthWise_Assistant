@@ -3,6 +3,7 @@
 
 import {
   AlertTriangle,
+  ClipboardPlus,
   HeartPulse,
   Languages,
   LayoutGrid,
@@ -58,6 +59,7 @@ export function AppSidebar() {
     { href: '/symptom-guidance', icon: HeartPulse, label: t('symptomGuidance') },
     { href: '/preventive-healthcare', icon: ShieldCheck, label: t('preventiveCare') },
     { href: '/vaccination-schedules', icon: Syringe, label: t('vaccinations') },
+    { href: '/my-records', icon: ClipboardPlus, label: t('myRecords') },
     { href: '/outbreak-alerts', icon: AlertTriangle, label: t('outbreakAlerts') },
   ];
 

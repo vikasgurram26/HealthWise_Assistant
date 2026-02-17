@@ -7,6 +7,7 @@
     "symptomGuidance": "లక్షణ మార్గదర్శకత్వం",
     "preventiveCare": "నివారణ సంరక్షణ",
     "vaccinations": "టీకాలు",
+    "myRecords": "నా రికార్డులు",
     "outbreakAlerts": "వ్యాప్తి హెచ్చరికలు",
     "settings": "సెట్టింగ్‌లు",
     "contactUs": "మమ్మల్ని సంప్రదించండి",
@@ -177,5 +178,25 @@
     "loadingButton": "భద్రపరుస్తోంది...",
     "successToastTitle": "సెట్టింగ్‌లు భద్రపరచబడ్డాయి",
     "successToastDescription": "మీ మార్పులు విజయవంతంగా భద్రపరచబడ్డాయి."
+  },
+  "MyRecordsPage": {
+    "title": "నా టీకా రికార్డులు",
+    "description": "మీ వ్యక్తిగత టీకా చరిత్రను వీక్షించండి మరియు నిర్వహించండి.",
+    "addRecordTitle": "కొత్త రికార్డును జోడించండి",
+    "vaccineNameLabel": "టీకా పేరు",
+    "vaccineNamePlaceholder": "ఉదా., COVID-19, MMR",
+    "doseLabel": "మోతాదు",
+    "dosePlaceholder": "ఉదా., 1వ మోతాదు, బూస్టర్",
+    "dateAdministeredLabel": "ఇచ్చిన తేదీ",
+    "addButton": "రికార్డును జోడించండి",
+    "addingButton": "జోడిస్తోంది...",
+    "noRecords": "మీరు ఇంకా ఏ టీకా రికార్డులను జోడించలేదు.",
+    "tableHeaderVaccine": "టీకా",
+    "tableHeaderDose": "మోతాదు",
+    "tableHeaderDate": "ఇచ్చిన తేదీ",
+    "errorTitle": "లోపం",
+    "errorDescription": "టీకా రికార్డును సేవ్ చేయడం సాధ్యం కాలేదు. దయచేసి మళ్లీ ప్రయత్నించండి.",
+    "missingInfoTitle": "సమాచారం లేదు",
+    "missingInfoDescription": "రికార్డును జోడించడానికి దయచేసి అన్ని ఫీల్డ్‌లను పూరించండి."
   }
 }

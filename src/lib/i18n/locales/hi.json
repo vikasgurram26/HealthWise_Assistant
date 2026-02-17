@@ -7,6 +7,7 @@
     "symptomGuidance": "लक्षण मार्गदर्शन",
     "preventiveCare": "निवारक देखभाल",
     "vaccinations": "टीकाकरण",
+    "myRecords": "मेरे रिकॉर्ड",
     "outbreakAlerts": "प्रकोप अलर्ट",
     "settings": "सेटिंग्स",
     "contactUs": "हमसे संपर्क करें",
@@ -177,5 +178,25 @@
     "loadingButton": "सहेजा जा रहा है...",
     "successToastTitle": "सेटिंग्स सहेजी गईं",
     "successToastDescription": "आपके परिवर्तन सफलतापूर्वक सहेजे गए हैं।"
+  },
+  "MyRecordsPage": {
+    "title": "मेरे टीकाकरण रिकॉर्ड",
+    "description": "अपने व्यक्तिगत टीकाकरण इतिहास को देखें और प्रबंधित करें।",
+    "addRecordTitle": "नया रिकॉर्ड जोड़ें",
+    "vaccineNameLabel": "टीके का नाम",
+    "vaccineNamePlaceholder": "जैसे, COVID-19, MMR",
+    "doseLabel": "खुराक",
+    "dosePlaceholder": "जैसे, पहली खुराक, बूस्टर",
+    "dateAdministeredLabel": "दी गई तारीख",
+    "addButton": "रिकॉर्ड जोड़ें",
+    "addingButton": "जोड़ा जा रहा है...",
+    "noRecords": "आपने अभी तक कोई टीकाकरण रिकॉर्ड नहीं जोड़ा है।",
+    "tableHeaderVaccine": "टीका",
+    "tableHeaderDose": "खुराक",
+    "tableHeaderDate": "दी गई तारीख",
+    "errorTitle": "त्रुटि",
+    "errorDescription": "टीकाकरण रिकॉर्ड सहेजा नहीं जा सका। कृपया पुनः प्रयास करें।",
+    "missingInfoTitle": "जानकारी अधूरी है",
+    "missingInfoDescription": "रिकॉर्ड जोड़ने के लिए कृपया सभी फ़ील्ड भरें।"
   }
 }

@@ -7,14 +7,13 @@ import {
   query,
   where,
   type DocumentData,
-  type CollectionReference,
   type Query,
 } from 'firebase/firestore';
 import { useEffect, useState, useMemo } from 'react';
 import { useFirestore } from '@/firebase/provider';
 
 export function useCollection<T extends DocumentData>(
-  collectionName: string,
+  path: string | null,
   options?: {
     where?: [string, '==', any];
   }
@@ -24,11 +23,11 @@ export function useCollection<T extends DocumentData>(
   const [loading, setLoading] = useState(true);
 
   const collectionRef = useMemo(() => {
-    if (!firestore) return null;
-    return collection(firestore, collectionName);
-  }, [firestore, collectionName]);
+    if (!firestore || !path) return null;
+    return collection(firestore, path);
+  }, [firestore, path]);
 
-  const queryRef = useMemo(() => {
+  const queryRef: Query | null = useMemo(() => {
     if (!collectionRef) return null;
     if (options?.where) {
       return query(collectionRef, where(...options.where));
@@ -38,6 +37,7 @@ export function useCollection<T extends DocumentData>(
 
   useEffect(() => {
     if (!queryRef) {
+        setData([]);
         setLoading(false);
         return;
     };
@@ -53,13 +53,13 @@ export function useCollection<T extends DocumentData>(
         setLoading(false);
       },
       (error) => {
-        console.error(`Error fetching collection ${collectionName}:`, error);
+        console.error(`Error fetching collection ${path}:`, error);
         setLoading(false);
       }
     );
 
     return () => unsubscribe();
-  }, [queryRef, collectionName]);
+  }, [queryRef, path]);
 
   return { data, loading };
 }

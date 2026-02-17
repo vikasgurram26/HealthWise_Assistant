@@ -7,6 +7,7 @@
     "symptomGuidance": "Symptom Guidance",
     "preventiveCare": "Preventive Care",
     "vaccinations": "Vaccinations",
+    "myRecords": "My Records",
     "outbreakAlerts": "Outbreak Alerts",
     "settings": "Settings",
     "contactUs": "Contact Us",
@@ -177,5 +178,25 @@
     "loadingButton": "Saving...",
     "successToastTitle": "Settings Saved",
     "successToastDescription": "Your changes have been saved successfully."
+  },
+  "MyRecordsPage": {
+    "title": "My Vaccination Records",
+    "description": "View and manage your personal vaccination history.",
+    "addRecordTitle": "Add New Record",
+    "vaccineNameLabel": "Vaccine Name",
+    "vaccineNamePlaceholder": "e.g., COVID-19, MMR",
+    "doseLabel": "Dose",
+    "dosePlaceholder": "e.g., 1st Dose, Booster",
+    "dateAdministeredLabel": "Date Administered",
+    "addButton": "Add Record",
+    "addingButton": "Adding...",
+    "noRecords": "You haven't added any vaccination records yet.",
+    "tableHeaderVaccine": "Vaccine",
+    "tableHeaderDose": "Dose",
+    "tableHeaderDate": "Date Administered",
+    "errorTitle": "Error",
+    "errorDescription": "Could not save the vaccination record. Please try again.",
+    "missingInfoTitle": "Missing Information",
+    "missingInfoDescription": "Please fill out all fields to add a record."
   }
 }
