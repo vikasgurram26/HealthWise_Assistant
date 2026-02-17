@@ -91,7 +91,7 @@ export default function ChatbotPage() {
                       : 'bg-muted'
                   )}
                 >
-                  <p>{message.content[0].text}</p>
+                  <p className="whitespace-pre-line">{message.content[0].text}</p>
                 </div>
                 {message.role === 'user' && (
                   <Avatar className="h-9 w-9 border">
@@ -148,3 +148,4 @@ export default function ChatbotPage() {
     </Card>
   );
 }
+
