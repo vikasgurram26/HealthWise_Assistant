@@ -15,14 +15,16 @@ import { RecentAlerts } from '@/components/dashboard/recent-alerts';
 import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card';
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
+import { useTranslations } from '@/lib/i18n/use-translations';
 
 export default function DashboardPage() {
+  const t = useTranslations('DashboardPage');
   return (
     <div className="flex flex-col gap-6">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Health Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
         <p className="text-muted-foreground">
-          Your central hub for health statistics, alerts, and tools.
+          {t('description')}
         </p>
       </div>
 

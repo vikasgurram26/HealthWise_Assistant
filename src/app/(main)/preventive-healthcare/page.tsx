@@ -21,8 +21,10 @@ import {
 } from '@/ai/flows/preventive-healthcare-info';
 import { ShieldCheck } from 'lucide-react';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { useTranslations } from '@/lib/i18n/use-translations';
 
 export default function PreventiveHealthcarePage() {
+  const t = useTranslations('PreventiveHealthcarePage');
   const [disease, setDisease] = useLocalStorage('preventive-disease', '');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<PreventiveHealthcareInfoOutput | null>(
@@ -35,8 +37,8 @@ export default function PreventiveHealthcarePage() {
     if (!disease) {
       toast({
         variant: 'destructive',
-        title: 'Missing Information',
-        description: 'Please enter a disease or condition.',
+        title: t('missingInfoTitle'),
+        description: t('missingInfoDescription'),
       });
       return;
     }
@@ -50,8 +52,8 @@ export default function PreventiveHealthcarePage() {
       console.error('Error getting preventive healthcare info:', error);
       toast({
         variant: 'destructive',
-        title: 'An Error Occurred',
-        description: 'Failed to get AI-powered information.',
+        title: t('errorTitle'),
+        description: t('errorDescription'),
       });
     } finally {
       setIsLoading(false);
@@ -62,18 +64,18 @@ export default function PreventiveHealthcarePage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>Preventive Healthcare</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <CardDescription>
-            Get AI-powered preventive care information for specific diseases.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="disease">Disease / Condition</Label>
+              <Label htmlFor="disease">{t('diseaseLabel')}</Label>
               <Input
                 id="disease"
-                placeholder="e.g., Diabetes, Hypertension"
+                placeholder={t('diseasePlaceholder')}
                 value={disease}
                 onChange={(e) => setDisease(e.target.value)}
                 disabled={isLoading}
@@ -82,7 +84,7 @@ export default function PreventiveHealthcarePage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Getting Information...' : 'Get Information'}
+              {isLoading ? t('loadingButton') : t('button')}
             </Button>
           </CardFooter>
         </form>
@@ -91,7 +93,7 @@ export default function PreventiveHealthcarePage() {
       {isLoading && (
         <Card>
           <CardHeader>
-            <CardTitle>Loading Preventive Measures...</CardTitle>
+            <CardTitle>{t('loadingTitle')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-4 w-[250px]" />
@@ -110,18 +112,18 @@ export default function PreventiveHealthcarePage() {
             <div className="flex items-center gap-3">
               <ShieldCheck className="size-6 text-primary" />
               <CardTitle>
-                Preventive Guidance for {disease}
+                {t('resultsTitle', { disease })}
               </CardTitle>
             </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div>
-              <h3 className="mb-2 text-lg font-semibold">Preventive Measures</h3>
+              <h3 className="mb-2 text-lg font-semibold">{t('measuresTitle')}</h3>
               <p className="text-sm text-muted-foreground">{result.preventiveMeasures}</p>
             </div>
             <div>
               <h3 className="mb-2 text-lg font-semibold">
-                Application Guidance
+                {t('guidanceTitle')}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {result.applicationGuidance}

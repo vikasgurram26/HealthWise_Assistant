@@ -20,8 +20,10 @@ import { getFullOutbreakAlerts, OutbreakAlert } from '@/lib/outbreak-alerts';
 import { Badge } from '@/components/ui/badge';
 import useLocalStorage from '@/hooks/use-local-storage';
 import Link from 'next/link';
+import { useTranslations } from '@/lib/i18n/use-translations';
 
 export default function OutbreakAlertsPage() {
+  const t = useTranslations('OutbreakAlertsPage');
   const [location, setLocation] = useLocalStorage('outbreak-location', '');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<OutbreakAlert[] | null>(null);
@@ -37,8 +39,8 @@ export default function OutbreakAlertsPage() {
       console.error('Error getting outbreak alerts:', error);
       toast({
         variant: 'destructive',
-        title: 'An Error Occurred',
-        description: 'Failed to get outbreak alerts from the WHO.',
+        title: t('errorTitle'),
+        description: t('errorDescription'),
       });
     } finally {
       setIsLoading(false);
@@ -54,8 +56,8 @@ export default function OutbreakAlertsPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: 'Global Alerts',
-      description: 'Fetching the latest global alerts from the World Health Organization.',
+      title: t('title'),
+      description: t('toastDescription'),
     });
     fetchAlerts(location);
   };
@@ -75,18 +77,18 @@ export default function OutbreakAlertsPage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>WHO Outbreak Alerts</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <CardDescription>
-            Live news from the World Health Organization. Location input is currently for display only.
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="grid gap-2">
-              <Label htmlFor="location">Your Location (display only)</Label>
+              <Label htmlFor="location">{t('locationLabel')}</Label>
               <Input
                 id="location"
-                placeholder="e.g., New York, NY"
+                placeholder={t('locationPlaceholder')}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 disabled={isLoading}
@@ -95,7 +97,7 @@ export default function OutbreakAlertsPage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Refreshing Alerts...' : 'Refresh Global Alerts'}
+              {isLoading ? t('loadingButton') : t('button')}
             </Button>
           </CardFooter>
         </form>
@@ -117,8 +119,8 @@ export default function OutbreakAlertsPage() {
             <CardHeader>
               <CardTitle>
                 {results && results.length > 0
-                  ? `Live WHO News & Alerts`
-                  : `No Alerts Found`}
+                  ? t('resultsTitle')
+                  : t('noResultsTitle')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -143,14 +145,14 @@ export default function OutbreakAlertsPage() {
                       </p>
                        <Button asChild variant="outline" size="sm">
                         <Link href={alert.url} target="_blank" rel="noopener noreferrer">
-                          Read More on WHO.int <ArrowRight className="ml-2" />
+                          {t('readMore')} <ArrowRight className="ml-2" />
                         </Link>
                       </Button>
                     </CardContent>
                   </Card>
                 ))
               ) : (
-                <p>No active alerts were found.</p>
+                <p>{t('noResultsMessage')}</p>
               )}
             </CardContent>
           </Card>

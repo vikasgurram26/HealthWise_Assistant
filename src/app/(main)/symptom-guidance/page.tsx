@@ -23,8 +23,10 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { useTranslations } from '@/lib/i18n/use-translations';
 
 export default function SymptomGuidancePage() {
+  const t = useTranslations('SymptomGuidancePage');
   const [symptoms, setSymptoms] = useLocalStorage('symptom-symptoms', '');
   const [location, setLocation] = useLocalStorage('symptom-location', '');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,8 +38,8 @@ export default function SymptomGuidancePage() {
     if (!symptoms || !location) {
       toast({
         variant: 'destructive',
-        title: 'Missing Information',
-        description: 'Please enter both symptoms and location.',
+        title: t('missingInfoTitle'),
+        description: t('missingInfoDescription'),
       });
       return;
     }
@@ -51,8 +53,8 @@ export default function SymptomGuidancePage() {
       console.error('Error getting symptom guidance:', error);
       toast({
         variant: 'destructive',
-        title: 'An Error Occurred',
-        description: 'Failed to get AI-powered guidance.',
+        title: t('errorTitle'),
+        description: t('errorDescription'),
       });
     } finally {
       setIsLoading(false);
@@ -63,26 +65,26 @@ export default function SymptomGuidancePage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>Symptom Guidance</CardTitle>
-          <CardDescription>Describe your symptoms to get AI-powered guidance.</CardDescription>
+          <CardTitle>{t('title')}</CardTitle>
+          <CardDescription>{t('description')}</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="grid gap-2">
-              <Label htmlFor="symptoms">Your Symptoms</Label>
+              <Label htmlFor="symptoms">{t('symptomsLabel')}</Label>
               <Textarea
                 id="symptoms"
-                placeholder="e.g., fever, cough, headache"
+                placeholder={t('symptomsPlaceholder')}
                 value={symptoms}
                 onChange={(e) => setSymptoms(e.target.value)}
                 disabled={isLoading}
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="location">Your Location</Label>
+              <Label htmlFor="location">{t('locationLabel')}</Label>
               <Input
                 id="location"
-                placeholder="e.g., New York, NY"
+                placeholder={t('locationPlaceholder')}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 disabled={isLoading}
@@ -91,7 +93,7 @@ export default function SymptomGuidancePage() {
           </CardContent>
           <CardFooter>
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Getting Guidance...' : 'Get Guidance'}
+              {isLoading ? t('loadingButton') : t('button')}
             </Button>
           </CardFooter>
         </form>
@@ -100,7 +102,7 @@ export default function SymptomGuidancePage() {
       {isLoading && (
         <Card>
           <CardHeader>
-            <CardTitle>Analysis in Progress...</CardTitle>
+            <CardTitle>{t('loadingTitle')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Skeleton className="h-4 w-[250px]" />
@@ -114,13 +116,13 @@ export default function SymptomGuidancePage() {
       {result && (
         <Card>
           <CardHeader>
-            <CardTitle>Possible Conditions</CardTitle>
+            <CardTitle>{t('resultsTitle')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm">{result.possibleConditions}</p>
             <Alert variant="destructive">
               <Terminal className="h-4 w-4" />
-              <AlertTitle>Disclaimer</AlertTitle>
+              <AlertTitle>{t('disclaimerTitle')}</AlertTitle>
               <AlertDescription>
                 {result.disclaimer}
               </AlertDescription>

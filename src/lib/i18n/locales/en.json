@@ -1,0 +1,153 @@
+{
+  "AppSidebar": {
+    "title": "HealthWise",
+    "dashboard": "Dashboard",
+    "chatbot": "AI Chatbot",
+    "symptomGuidance": "Symptom Guidance",
+    "preventiveCare": "Preventive Care",
+    "vaccinations": "Vaccinations",
+    "outbreakAlerts": "Outbreak Alerts",
+    "settings": "Settings",
+    "contactUs": "Contact Us",
+    "support": "Support",
+    "language": "Language"
+  },
+  "UserNav": {
+    "profile": "Profile",
+    "billing": "Billing",
+    "settings": "Settings",
+    "logOut": "Log out"
+  },
+  "DashboardPage": {
+    "title": "Health Dashboard",
+    "description": "Your central hub for health statistics, alerts, and tools."
+  },
+  "StatCards": {
+    "totalCases": "Total Cases",
+    "today": "+{count} Today",
+    "totalDeaths": "Total Deaths",
+    "totalRecovered": "Total Recovered",
+    "activeCases": "Active Cases",
+    "worldwide": "Worldwide"
+  },
+  "RecentAlerts": {
+    "title": "Recent Outbreak Alerts",
+    "description": "Latest news from the WHO.",
+    "fetchError": "Could not fetch recent alerts.",
+    "viewAll": "View All Alerts"
+  },
+  "SymptomCheckerCard": {
+    "title": "Symptom Checker",
+    "description": "Check your symptoms and get AI-powered guidance.",
+    "button": "Check Symptoms"
+  },
+  "PreventiveCareCard": {
+    "title": "Preventive Care",
+    "description": "Get AI-powered information on preventing diseases.",
+    "button": "Explore Preventive Care"
+  },
+  "VaccinationCard": {
+    "title": "Vaccination Schedules",
+    "description": "Get vaccination schedules based on age group.",
+    "button": "View Schedules"
+  },
+  "ChatbotPage": {
+    "title": "AI Chatbot",
+    "description": "Chat with our AI assistant for health information.",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "errorMessage": "Sorry, something went wrong."
+  },
+  "SymptomGuidancePage": {
+    "title": "Symptom Guidance",
+    "description": "Describe your symptoms to get AI-powered guidance.",
+    "symptomsLabel": "Your Symptoms",
+    "symptomsPlaceholder": "e.g., fever, cough, headache",
+    "locationLabel": "Your Location",
+    "locationPlaceholder": "e.g., New York, NY",
+    "button": "Get Guidance",
+    "loadingButton": "Getting Guidance...",
+    "missingInfoTitle": "Missing Information",
+    "missingInfoDescription": "Please enter both symptoms and location.",
+    "errorTitle": "An Error Occurred",
+    "errorDescription": "Failed to get AI-powered guidance.",
+    "loadingTitle": "Analysis in Progress...",
+    "resultsTitle": "Possible Conditions",
+    "disclaimerTitle": "Disclaimer"
+  },
+  "PreventiveHealthcarePage": {
+    "title": "Preventive Healthcare",
+    "description": "Get AI-powered preventive care information for specific diseases.",
+    "diseaseLabel": "Disease / Condition",
+    "diseasePlaceholder": "e.g., Diabetes, Hypertension",
+    "button": "Get Information",
+    "loadingButton": "Getting Information...",
+    "missingInfoTitle": "Missing Information",
+    "missingInfoDescription": "Please enter a disease or condition.",
+    "errorTitle": "An Error Occurred",
+    "errorDescription": "Failed to get AI-powered information.",
+    "loadingTitle": "Loading Preventive Measures...",
+    "resultsTitle": "Preventive Guidance for {disease}",
+    "measuresTitle": "Preventive Measures",
+    "guidanceTitle": "Application Guidance"
+  },
+  "VaccinationSchedulesPage": {
+    "title": "Vaccination Schedules",
+    "description": "Get AI-powered vaccination recommendations based on age.",
+    "ageGroupLabel": "Age Group",
+    "ageGroupPlaceholder": "Select an age group",
+    "button": "Get Schedule",
+    "loadingButton": "Getting Schedule...",
+    "missingInfoTitle": "Missing Information",
+    "missingInfoDescription": "Please select an age group.",
+    "errorTitle": "An Error Occurred",
+    "errorDescription": "Failed to get AI-powered schedule.",
+    "loadingTitle": "Loading Vaccination Schedule...",
+    "resultsTitle": "Recommended Vaccinations for {ageGroup}",
+    "vaccineHeader": "Vaccine",
+    "purposeHeader": "Purpose",
+    "scheduleHeader": "Schedule",
+    "ageGroups": {
+      "infant": "Infant (0-12 months)",
+      "child1_6": "Child (1-6 years)",
+      "child7_12": "Child (7-12 years)",
+      "adolescent": "Adolescent (13-18 years)",
+      "adult": "Adult (19-64 years)",
+      "senior": "Senior (65+ years)"
+    }
+  },
+  "OutbreakAlertsPage": {
+    "title": "WHO Outbreak Alerts",
+    "description": "Live news from the World Health Organization. Location input is currently for display only.",
+    "locationLabel": "Your Location (display only)",
+    "locationPlaceholder": "e.g., New York, NY",
+    "button": "Refresh Global Alerts",
+    "loadingButton": "Refreshing Alerts...",
+    "errorTitle": "An Error Occurred",
+    "errorDescription": "Failed to get outbreak alerts from the WHO.",
+    "resultsTitle": "Live WHO News & Alerts",
+    "noResultsTitle": "No Alerts Found",
+    "noResultsMessage": "No active alerts were found.",
+    "readMore": "Read More on WHO.int",
+    "toastDescription": "Fetching the latest global alerts from the World Health Organization."
+  },
+  "SettingsPage": {
+    "title": "Settings",
+    "description": "Manage your account settings and preferences.",
+    "profileSection": "Profile",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "notificationsSection": "Notifications",
+    "notificationsDescription": "Configure how you receive notifications.",
+    "outbreakAlerts": "Outbreak Alerts",
+    "outbreakAlertsDescription": "Receive alerts for disease outbreaks in your area.",
+    "healthTips": "Daily Health Tips",
+    "healthTipsDescription": "Get daily tips for a healthier lifestyle.",
+    "newsletter": "Newsletter",
+    "newsletterDescription": "Subscribe to our monthly health newsletter.",
+    "button": "Save Changes",
+    "loadingButton": "Saving...",
+    "successToastTitle": "Settings Saved",
+    "successToastDescription": "Your changes have been saved successfully."
+  }
+}

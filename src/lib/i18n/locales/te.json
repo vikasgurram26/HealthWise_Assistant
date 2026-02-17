@@ -1,0 +1,153 @@
+{
+  "AppSidebar": {
+    "title": "హెల్త్‌వైజ్",
+    "dashboard": "డాష్‌బోర్డ్",
+    "chatbot": "AI చాట్‌బాట్",
+    "symptomGuidance": "లక్షణ మార్గదర్శకత్వం",
+    "preventiveCare": "నివారణ సంరక్షణ",
+    "vaccinations": "టీకాలు",
+    "outbreakAlerts": "వ్యాప్తి హెచ్చరికలు",
+    "settings": "సెట్టింగ్‌లు",
+    "contactUs": "మమ్మల్ని సంప్రదించండి",
+    "support": "మద్దతు",
+    "language": "భాష"
+  },
+  "UserNav": {
+    "profile": "ప్రొఫైల్",
+    "billing": "బిల్లింగ్",
+    "settings": "సెట్టింగ్‌లు",
+    "logOut": "లాగ్ అవుట్"
+  },
+  "DashboardPage": {
+    "title": "ఆరోగ్య డాష్‌బోర్డ్",
+    "description": "మీ ఆరోగ్య గణాంకాలు, హెచ్చరికలు మరియు సాధనాల కోసం మీ కేంద్ర కేంద్రం."
+  },
+  "StatCards": {
+    "totalCases": "మొత్తం కేసులు",
+    "today": "+{count} ఈ రోజు",
+    "totalDeaths": "మొత్తం మరణాలు",
+    "totalRecovered": "మొత్తం కోలుకున్నవి",
+    "activeCases": "క్రియాశీల కేసులు",
+    "worldwide": "ప్రపంచవ్యాప్తంగా"
+  },
+  "RecentAlerts": {
+    "title": "ఇటీవలి వ్యాప్తి హెచ్చరికలు",
+    "description": "WHO నుండి తాజా వార్తలు.",
+    "fetchError": "ఇటీవలి హెచ్చరికలను పొందడం సాధ్యం కాలేదు.",
+    "viewAll": "అన్ని హెచ్చరికలను వీక్షించండి"
+  },
+  "SymptomCheckerCard": {
+    "title": "లక్షణాల తనిఖీ",
+    "description": "మీ లక్షణాలను తనిఖీ చేయండి మరియు AI-ఆధారిత మార్గదర్శకత్వం పొందండి.",
+    "button": "లక్షణాలను తనిఖీ చేయండి"
+  },
+  "PreventiveCareCard": {
+    "title": "నివారణ సంరక్షణ",
+    "description": "వ్యాధులను నివారించడంపై AI-ఆధారిత సమాచారాన్ని పొందండి.",
+    "button": "నివారణ సంరక్షణను అన్వేషించండి"
+  },
+  "VaccinationCard": {
+    "title": "టీకా షెడ్యూల్స్",
+    "description": "వయస్సు సమూహం ఆధారంగా టీకా షెడ్యూల్స్ పొందండి.",
+    "button": "షెడ్యూల్స్‌ను వీక్షించండి"
+  },
+  "ChatbotPage": {
+    "title": "AI చాట్‌బాట్",
+    "description": "ఆరోగ్య సమాచారం కోసం మా AI సహాయకుడితో చాట్ చేయండి.",
+    "placeholder": "మీ సందేశాన్ని టైప్ చేయండి...",
+    "send": "పంపండి",
+    "errorMessage": "క్షమించండి, ఏదో తప్పు జరిగింది."
+  },
+  "SymptomGuidancePage": {
+    "title": "లక్షణ మార్గదర్శకత్వం",
+    "description": "AI-ఆధారిత మార్గదర్శకత్వం పొందడానికి మీ లక్షణాలను వివరించండి.",
+    "symptomsLabel": "మీ లక్షణాలు",
+    "symptomsPlaceholder": "ఉదా., జ్వరం, దగ్గు, తలనొప్పి",
+    "locationLabel": "మీ స్థానం",
+    "locationPlaceholder": "ఉదా., న్యూయార్క్, NY",
+    "button": "మార్గదర్శకత్వం పొందండి",
+    "loadingButton": "మార్గదర్శకత్వం పొందుతోంది...",
+    "missingInfoTitle": "సమాచారం లేదు",
+    "missingInfoDescription": "దయచేసి లక్షణాలు మరియు స్థానం రెండింటినీ నమోదు చేయండి.",
+    "errorTitle": "ఒక లోపం సంభవించింది",
+    "errorDescription": "AI-ఆధారిత మార్గదర్శకత్వం పొందడంలో విఫలమైంది.",
+    "loadingTitle": "విశ్లేషణ పురోగతిలో ఉంది...",
+    "resultsTitle": "సాధ్యమయ్యే పరిస్థితులు",
+    "disclaimerTitle": "నిరాకరణ"
+  },
+  "PreventiveHealthcarePage": {
+    "title": "నివారణ ఆరోగ్య సంరక్షణ",
+    "description": "నిర్దిష్ట వ్యాధుల కోసం AI-ఆధారిత నివారణ సంరక్షణ సమాచారాన్ని పొందండి.",
+    "diseaseLabel": "వ్యాధి / పరిస్థితి",
+    "diseasePlaceholder": "ఉదా., డయాబెటిస్, రక్తపోటు",
+    "button": "సమాచారం పొందండి",
+    "loadingButton": "సమాచారం పొందుతోంది...",
+    "missingInfoTitle": "సమాచారం లేదు",
+    "missingInfoDescription": "దయచేసి ఒక వ్యాధి లేదా పరిస్థితిని నమోదు చేయండి.",
+    "errorTitle": "ఒక లోపం సంభవించింది",
+    "errorDescription": "AI-ఆధారిత సమాచారం పొందడంలో విఫలమైంది.",
+    "loadingTitle": "నివారణ చర్యలు లోడ్ అవుతున్నాయి...",
+    "resultsTitle": "{disease} కోసం నివారణ మార్గదర్శకత్వం",
+    "measuresTitle": "నివారణ చర్యలు",
+    "guidanceTitle": "అప్లికేషన్ మార్గదర్శకత్వం"
+  },
+  "VaccinationSchedulesPage": {
+    "title": "టీకా షెడ్యూల్స్",
+    "description": "వయస్సు ఆధారంగా AI-ఆధారిత టీకా సిఫార్సులను పొందండి.",
+    "ageGroupLabel": "వయస్సు సమూహం",
+    "ageGroupPlaceholder": "వయస్సు సమూహాన్ని ఎంచుకోండి",
+    "button": "షెడ్యూల్ పొందండి",
+    "loadingButton": "షెడ్యూల్ పొందుతోంది...",
+    "missingInfoTitle": "సమాచారం లేదు",
+    "missingInfoDescription": "దయచేసి వయస్సు సమూహాన్ని ఎంచుకోండి.",
+    "errorTitle": "ఒక లోపం సంభవించింది",
+    "errorDescription": "AI-ఆధారిత షెడ్యూల్ పొందడంలో విఫలమైంది.",
+    "loadingTitle": "టీకా షెడ్యూల్ లోడ్ అవుతోంది...",
+    "resultsTitle": "{ageGroup} కోసం సిఫార్సు చేయబడిన టీకాలు",
+    "vaccineHeader": "టీకా",
+    "purposeHeader": "ప్రయోజనం",
+    "scheduleHeader": "షెడ్యూల్",
+    "ageGroups": {
+      "infant": "శిశువు (0-12 నెలలు)",
+      "child1_6": "పిల్లవాడు (1-6 సంవత్సరాలు)",
+      "child7_12": "పిల్లవాడు (7-12 సంవత్సరాలు)",
+      "adolescent": "యువకులు (13-18 సంవత్సరాలు)",
+      "adult": "వయోజన (19-64 సంవత్సరాలు)",
+      "senior": "సీనియర్ (65+ సంవత్సరాలు)"
+    }
+  },
+  "OutbreakAlertsPage": {
+    "title": "WHO వ్యాప్తి హెచ్చరికలు",
+    "description": "ప్రపంచ ఆరోగ్య సంస్థ నుండి ప్రత్యక్ష ప్రసార వార్తలు. స్థాన ఇన్పుట్ ప్రస్తుతం ప్రదర్శన కోసం మాత్రమే.",
+    "locationLabel": "మీ స్థానం (ప్రదర్శన మాత్రమే)",
+    "locationPlaceholder": "ఉదా., న్యూయార్క్, NY",
+    "button": "ప్రపంచ హెచ్చరికలను రిఫ్రెష్ చేయండి",
+    "loadingButton": "హెచ్చరికలను రిఫ్రెష్ చేస్తోంది...",
+    "errorTitle": "ఒక లోపం సంభవించింది",
+    "errorDescription": "WHO నుండి వ్యాప్తి హెచ్చరికలను పొందడంలో విఫలమైంది.",
+    "resultsTitle": "ప్రత్యక్ష WHO వార్తలు & హెచ్చరికలు",
+    "noResultsTitle": "హెచ్చరికలు కనుగొనబడలేదు",
+    "noResultsMessage": "క్రియాశీల హెచ్చరికలు ఏవీ కనుగొనబడలేదు.",
+    "readMore": "WHO.intలో మరింత చదవండి",
+    "toastDescription": "ప్రపంచ ఆరోగ్య సంస్థ నుండి తాజా ప్రపంచ హెచ్చరికలను పొందుతోంది."
+  },
+  "SettingsPage": {
+    "title": "సెట్టింగ్‌లు",
+    "description": "మీ ఖాతా సెట్టింగ్‌లు మరియు ప్రాధాన్యతలను నిర్వహించండి.",
+    "profileSection": "ప్రొఫైల్",
+    "nameLabel": "పేరు",
+    "emailLabel": "ఇమెయిల్",
+    "notificationsSection": "ప్రకటనలు",
+    "notificationsDescription": "మీరు ప్రకటనలను ఎలా స్వీకరిస్తారో కాన్ఫిగర్ చేయండి.",
+    "outbreakAlerts": "వ్యాప్తి హెచ్చరికలు",
+    "outbreakAlertsDescription": "మీ ప్రాంతంలో వ్యాధి వ్యాప్తి కోసం హెచ్చరికలను స్వీకరించండి.",
+    "healthTips": "రోజువారీ ఆరోగ్య చిట్కాలు",
+    "healthTipsDescription": "ఆరోగ్యకరమైన జీవనశైలి కోసం రోజువారీ చిట్కాలను పొందండి.",
+    "newsletter": "వార్తాలేఖ",
+    "newsletterDescription": "మా నెలవారీ ఆరోగ్య వార్తాలేఖకు సభ్యత్వాన్ని పొందండి.",
+    "button": "మార్పులను భద్రపరచండి",
+    "loadingButton": "భద్రపరుస్తోంది...",
+    "successToastTitle": "సెట్టింగ్‌లు భద్రపరచబడ్డాయి",
+    "successToastDescription": "మీ మార్పులు విజయవంతంగా భద్రపరచబడ్డాయి."
+  }
+}

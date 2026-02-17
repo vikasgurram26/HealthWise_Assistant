@@ -32,6 +32,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useLocale } from '@/lib/i18n/provider';
+import { useTranslations } from '@/lib/i18n/use-translations';
 
 
 const WhatsAppIcon = () => (
@@ -47,26 +49,28 @@ const WhatsAppIcon = () => (
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { locale, setLocale } = useLocale();
+  const t = useTranslations('AppSidebar');
 
   const navItems = [
-    { href: '/dashboard', icon: LayoutGrid, label: 'Dashboard' },
-    { href: '/chatbot', icon: MessageCircle, label: 'AI Chatbot' },
-    { href: '/symptom-guidance', icon: HeartPulse, label: 'Symptom Guidance' },
-    { href: '/preventive-healthcare', icon: ShieldCheck, label: 'Preventive Care' },
-    { href: '/vaccination-schedules', icon: Syringe, label: 'Vaccinations' },
-    { href: '/outbreak-alerts', icon: AlertTriangle, label: 'Outbreak Alerts' },
+    { href: '/dashboard', icon: LayoutGrid, label: t('dashboard') },
+    { href: '/chatbot', icon: MessageCircle, label: t('chatbot') },
+    { href: '/symptom-guidance', icon: HeartPulse, label: t('symptomGuidance') },
+    { href: '/preventive-healthcare', icon: ShieldCheck, label: t('preventiveCare') },
+    { href: '/vaccination-schedules', icon: Syringe, label: t('vaccinations') },
+    { href: '/outbreak-alerts', icon: AlertTriangle, label: t('outbreakAlerts') },
   ];
 
   const bottomNavItems = [
-    { href: '/settings', icon: Settings, label: 'Settings' },
-    { href: 'https://wa.me/9866055235', icon: WhatsAppIcon, label: 'Contact Us' },
-    { href: '/support', icon: LifeBuoy, label: 'Support', disabled: true },
+    { href: '/settings', icon: Settings, label: t('settings') },
+    { href: 'https://wa.me/9866055235', icon: WhatsAppIcon, label: t('contactUs') },
+    { href: '/support', icon: LifeBuoy, label: t('support'), disabled: true },
   ];
 
   const languages = [
     { code: 'en', name: 'English' },
-    { code: 'hi', name: 'Hindi' },
-    { code: 'te', name: 'Telugu' },
+    { code: 'hi', name: 'हिन्दी' },
+    { code: 'te', name: 'తెలుగు' },
   ];
 
   const isActive = (href: string) => {
@@ -86,7 +90,7 @@ export function AppSidebar() {
             <Stethoscope className="size-5" />
           </div>
           <span className="truncate text-lg font-semibold group-data-[collapsible=icon]:hidden">
-            HealthWise
+            {t('title')}
           </span>
         </div>
       </SidebarHeader>
@@ -132,16 +136,16 @@ export function AppSidebar() {
                 <SidebarMenuButton
                   variant="ghost"
                   className="w-full justify-start"
-                  tooltip={{ children: 'Language' }}
+                  tooltip={{ children: t('language') }}
                 >
                   <Languages />
-                  <span>Language</span>
+                  <span>{t('language')}</span>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="mb-2 w-56" side="top" align="start">
                 {languages.map(lang => (
-                  <DropdownMenuItem key={lang.code}>
-                    <Check className={cn('mr-2 h-4 w-4', 'en' === lang.code ? 'opacity-100' : 'opacity-0')} />
+                  <DropdownMenuItem key={lang.code} onSelect={() => setLocale(lang.code)}>
+                    <Check className={cn('mr-2 h-4 w-4', locale === lang.code ? 'opacity-100' : 'opacity-0')} />
                     {lang.name}
                   </DropdownMenuItem>
                 ))}

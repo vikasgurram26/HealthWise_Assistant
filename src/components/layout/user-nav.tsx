@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -13,17 +13,19 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslations } from '@/lib/i18n/use-translations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 
 export function UserNav() {
+  const t = useTranslations('UserNav');
   const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            {userAvatar && (
+            {userAvatar ? (
               <Image
                 src={userAvatar.imageUrl}
                 alt={userAvatar.description}
@@ -32,8 +34,9 @@ export function UserNav() {
                 data-ai-hint={userAvatar.imageHint}
                 className="rounded-full"
               />
+            ) : (
+             <AvatarFallback>U</AvatarFallback>
             )}
-            <AvatarFallback>U</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -49,21 +52,21 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            Profile
+            {t('profile')}
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Billing
+            {t('billing')}
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Settings
+            {t('settings')}
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          Log out
+          {t('logOut')}
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,0 +1,153 @@
+{
+  "AppSidebar": {
+    "title": "हेल्थवाइज",
+    "dashboard": "डैशबोर्ड",
+    "chatbot": "एआई चैटबॉट",
+    "symptomGuidance": "लक्षण मार्गदर्शन",
+    "preventiveCare": "निवारक देखभाल",
+    "vaccinations": "टीकाकरण",
+    "outbreakAlerts": "प्रकोप अलर्ट",
+    "settings": "सेटिंग्स",
+    "contactUs": "हमसे संपर्क करें",
+    "support": "सहायता",
+    "language": "भाषा"
+  },
+  "UserNav": {
+    "profile": "प्रोफ़ाइल",
+    "billing": "बिलिंग",
+    "settings": "सेटिंग्स",
+    "logOut": "लॉग आउट करें"
+  },
+  "DashboardPage": {
+    "title": "स्वास्थ्य डैशबोर्ड",
+    "description": "आपके स्वास्थ्य आँकड़ों, अलर्ट और उपकरणों के लिए आपका केंद्रीय केंद्र।"
+  },
+  "StatCards": {
+    "totalCases": "कुल मामले",
+    "today": "+{count} आज",
+    "totalDeaths": "कुल मौतें",
+    "totalRecovered": "कुल ठीक हुए",
+    "activeCases": "सक्रिय मामले",
+    "worldwide": "दुनिया भर में"
+  },
+  "RecentAlerts": {
+    "title": "हालिया प्रकोप अलर्ट",
+    "description": "डब्ल्यूएचओ से नवीनतम समाचार।",
+    "fetchError": "हालिया अलर्ट प्राप्त नहीं किए जा सके।",
+    "viewAll": "सभी अलर्ट देखें"
+  },
+  "SymptomCheckerCard": {
+    "title": "लक्षण परीक्षक",
+    "description": "अपने लक्षणों की जाँच करें और एआई-संचालित मार्गदर्शन प्राप्त करें।",
+    "button": "लक्षणों की जाँच करें"
+  },
+  "PreventiveCareCard": {
+    "title": "निवारक देखभाल",
+    "description": "बीमारियों को रोकने पर एआई-संचालित जानकारी प्राप्त करें।",
+    "button": "निवारक देखभाल का अन्वेषण करें"
+  },
+  "VaccinationCard": {
+    "title": "टीकाकरण कार्यक्रम",
+    "description": "आयु समूह के आधार पर टीकाकरण कार्यक्रम प्राप्त करें।",
+    "button": "कार्यक्रम देखें"
+  },
+  "ChatbotPage": {
+    "title": "एआई चैटबॉट",
+    "description": "स्वास्थ्य जानकारी के लिए हमारे एआई सहायक के साथ चैट करें।",
+    "placeholder": "अपना संदेश टाइप करें...",
+    "send": "भेजें",
+    "errorMessage": "क्षमा करें, कुछ गलत हो गया।"
+  },
+  "SymptomGuidancePage": {
+    "title": "लक्षण मार्गदर्शन",
+    "description": "एआई-संचालित मार्गदर्शन प्राप्त करने के लिए अपने लक्षणों का वर्णन करें।",
+    "symptomsLabel": "आपके लक्षण",
+    "symptomsPlaceholder": "जैसे, बुखार, खांसी, सिरदर्द",
+    "locationLabel": "आपका स्थान",
+    "locationPlaceholder": "जैसे, न्यूयॉर्क, एनवाई",
+    "button": "मार्गदर्शन प्राप्त करें",
+    "loadingButton": "मार्गदर्शन प्राप्त हो रहा है...",
+    "missingInfoTitle": "जानकारी अधूरी है",
+    "missingInfoDescription": "कृपया लक्षण और स्थान दोनों दर्ज करें।",
+    "errorTitle": "एक त्रुटि हुई",
+    "errorDescription": "एआई-संचालित मार्गदर्शन प्राप्त करने में विफल।",
+    "loadingTitle": "विश्लेषण प्रगति पर है...",
+    "resultsTitle": "संभावित स्थितियाँ",
+    "disclaimerTitle": "अस्वीकरण"
+  },
+  "PreventiveHealthcarePage": {
+    "title": "निवारक स्वास्थ्य सेवा",
+    "description": "विशिष्ट रोगों के लिए एआई-संचालित निवारक देखभाल जानकारी प्राप्त करें।",
+    "diseaseLabel": "रोग / स्थिति",
+    "diseasePlaceholder": "जैसे, मधुमेह, उच्च रक्तचाप",
+    "button": "जानकारी प्राप्त करें",
+    "loadingButton": "जानकारी प्राप्त हो रही है...",
+    "missingInfoTitle": "जानकारी अधूरी है",
+    "missingInfoDescription": "कृपया एक रोग या स्थिति दर्ज करें।",
+    "errorTitle": "एक त्रुटि हुई",
+    "errorDescription": "एआई-संचालित जानकारी प्राप्त करने में विफल।",
+    "loadingTitle": "निवारक उपाय लोड हो रहे हैं...",
+    "resultsTitle": "{disease} के लिए निवारक मार्गदर्शन",
+    "measuresTitle": "निवारक उपाय",
+    "guidanceTitle": "आवेदन मार्गदर्शन"
+  },
+  "VaccinationSchedulesPage": {
+    "title": "टीकाकरण कार्यक्रम",
+    "description": "आयु के आधार पर एआई-संचालित टीकाकरण सिफारिशें प्राप्त करें।",
+    "ageGroupLabel": "आयु समूह",
+    "ageGroupPlaceholder": "एक आयु समूह चुनें",
+    "button": "कार्यक्रम प्राप्त करें",
+    "loadingButton": "कार्यक्रम प्राप्त हो रहा है...",
+    "missingInfoTitle": "जानकारी अधूरी है",
+    "missingInfoDescription": "कृपया एक आयु समूह चुनें।",
+    "errorTitle": "एक त्रुटि हुई",
+    "errorDescription": "एआई-संचालित कार्यक्रम प्राप्त करने में विफल।",
+    "loadingTitle": "टीकाकरण कार्यक्रम लोड हो रहा है...",
+    "resultsTitle": "{ageGroup} के लिए अनुशंसित टीकाकरण",
+    "vaccineHeader": "टीका",
+    "purposeHeader": "उद्देश्य",
+    "scheduleHeader": "कार्यक्रम",
+    "ageGroups": {
+      "infant": "शिशु (0-12 महीने)",
+      "child1_6": "बच्चा (1-6 वर्ष)",
+      "child7_12": "बच्चा (7-12 वर्ष)",
+      "adolescent": "किशोर (13-18 वर्ष)",
+      "adult": "वयस्क (19-64 वर्ष)",
+      "senior": "वरिष्ठ (65+ वर्ष)"
+    }
+  },
+  "OutbreakAlertsPage": {
+    "title": "डब्ल्यूएचओ प्रकोप अलर्ट",
+    "description": "विश्व स्वास्थ्य संगठन से लाइव समाचार। स्थान इनपुट वर्तमान में केवल प्रदर्शन के लिए है।",
+    "locationLabel": "आपका स्थान (केवल प्रदर्शन)",
+    "locationPlaceholder": "जैसे, न्यूयॉर्क, एनवाई",
+    "button": "वैश्विक अलर्ट ताज़ा करें",
+    "loadingButton": "अलर्ट ताज़ा हो रहे हैं...",
+    "errorTitle": "एक त्रुटि हुई",
+    "errorDescription": "डब्ल्यूएचओ से प्रकोप अलर्ट प्राप्त करने में विफल।",
+    "resultsTitle": "लाइव डब्ल्यूएचओ समाचार और अलर्ट",
+    "noResultsTitle": "कोई अलर्ट नहीं मिला",
+    "noResultsMessage": "कोई सक्रिय अलर्ट नहीं मिला।",
+    "readMore": "WHO.int पर और पढ़ें",
+    "toastDescription": "विश्व स्वास्थ्य संगठन से नवीनतम वैश्विक अलर्ट प्राप्त करना।"
+  },
+  "SettingsPage": {
+    "title": "सेटिंग्स",
+    "description": "अपनी खाता सेटिंग्स और प्राथमिकताएं प्रबंधित करें।",
+    "profileSection": "प्रोफ़ाइल",
+    "nameLabel": "नाम",
+    "emailLabel": "ईमेल",
+    "notificationsSection": "सूचनाएं",
+    "notificationsDescription": "आप सूचनाएं कैसे प्राप्त करते हैं, कॉन्फ़िगर करें।",
+    "outbreakAlerts": "प्रकोप अलर्ट",
+    "outbreakAlertsDescription": "अपने क्षेत्र में रोग के प्रकोप के लिए अलर्ट प्राप्त करें।",
+    "healthTips": "दैनिक स्वास्थ्य युक्तियाँ",
+    "healthTipsDescription": "एक स्वस्थ जीवन शैली के लिए दैनिक युक्तियाँ प्राप्त करें।",
+    "newsletter": "न्यूज़लेटर",
+    "newsletterDescription": "हमारे मासिक स्वास्थ्य न्यूज़लेटर की सदस्यता लें।",
+    "button": "परिवर्तनों को सहेजें",
+    "loadingButton": "सहेजा जा रहा है...",
+    "successToastTitle": "सेटिंग्स सहेजी गईं",
+    "successToastDescription": "आपके परिवर्तन सफलतापूर्वक सहेजे गए हैं।"
+  }
+}

@@ -8,11 +8,13 @@ import {
     CardTitle,
   } from '@/components/ui/card';
   import { getGlobalHealthData, type GlobalHealthData } from '@/lib/data';
+  import { useTranslations } from '@/lib/i18n/use-translations';
   import { Users, AlertCircle, ShieldCheck, HeartPulse } from 'lucide-react';
   import { useEffect, useState } from 'react';
   
   export function StatCards() {
     const [data, setData] = useState<GlobalHealthData | null>(null);
+    const t = useTranslations('StatCards');
 
     useEffect(() => {
       getGlobalHealthData().then(setData);
@@ -31,30 +33,30 @@ import {
 
     const stats = [
       {
-        title: 'Total Cases',
+        title: t('totalCases'),
         value: data.cases.toLocaleString(),
-        change: `+${data.todayCases.toLocaleString()} Today`,
+        change: t('today', { count: data.todayCases.toLocaleString() }),
         icon: <Users className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-red-500',
       },
       {
-        title: 'Total Deaths',
+        title: t('totalDeaths'),
         value: data.deaths.toLocaleString(),
-        change: `+${data.todayDeaths.toLocaleString()} Today`,
+        change: t('today', { count: data.todayDeaths.toLocaleString() }),
         icon: <AlertCircle className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-red-500',
       },
       {
-        title: 'Total Recovered',
+        title: t('totalRecovered'),
         value: data.recovered.toLocaleString(),
-        change: `+${data.todayRecovered.toLocaleString()} Today`,
+        change: t('today', { count: data.todayRecovered.toLocaleString() }),
         icon: <ShieldCheck className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-green-500',
       },
       {
-        title: 'Active Cases',
+        title: t('activeCases'),
         value: data.active.toLocaleString(),
-        change: 'Worldwide',
+        change: t('worldwide'),
         icon: <HeartPulse className="h-4 w-4 text-muted-foreground" />,
         changeColor: 'text-muted-foreground',
       },
