@@ -45,31 +45,31 @@ TWILIO_AUTH_TOKEN=...
 TWILIO_PHONE_NUMBER=+1...
 ```
 
-### Running the Development Server
-
-To run the app locally, use the following command:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
-
 ## Deployment to Firebase App Hosting
 
-### 1. Set Your Secrets in Firebase App Hosting
+### 1. Upgrade Your Firebase Project to the Blaze Plan
 
-**This is a critical step.** Your live application needs these secrets to run. You must set them before your first deployment.
+**This is a mandatory first step.** Firebase App Hosting requires your project to be on the "Blaze" (pay-as-you-go) plan.
 
 1.  **Go to Firebase App Hosting**: Use this direct link to your project's App Hosting page:
-    [https://console.firebase.google.com/project/studio-7604290226-11533/app-hosting](https://console.firebase.google.com/project/studio-7604290226-11533/app-hosting)
+    [https://console.firebase.google.com/project/studio-7604290226-11533/hosting](https://console.firebase.google.com/project/studio-7604290226-11533/hosting)
 
-2.  **Find Your Backend**: On that page, you should see your backend listed (the name is `nextn`). Click the **three-dot menu (⋮)** next to it and select **Edit backend**.
+2.  **Upgrade Project**: Click the **Upgrade project** button. You will be prompted to select a billing account. Follow the instructions to associate a billing account with your project.
+    *   **Note**: The Blaze plan has a generous free tier. You will only be charged for usage that exceeds this free allowance.
+
+### 2. Set Your Secrets in Firebase App Hosting
+
+**This is a critical security step.** Your live application needs these secrets to run. You must set them before your first deployment.
+
+1.  **Go to Firebase App Hosting**: After upgrading, revisit the App Hosting page:
+    [https://console.firebase.google.com/project/studio-7604290226-11533/hosting](https://console.firebase.google.com/project/studio-7604290226-11533/hosting)
+
+2.  **Find Your Backend**: On that page, you should now see your backend listed (the name is `nextn`). Click the **three-dot menu (⋮)** next to it and select **Edit backend**.
 
 3.  **Add Secrets**:
     *   In the "Edit backend" panel that opens, find the **Environment variables** section.
     *   Click **Add variable**.
-    *   Add the following four variables, one by one. You'll get these values from your `.env` file and your Twilio account.
+    *   Add the following four variables, one by one. You'll get these values from your `.env` file.
         *   `GEMINI_API_KEY`
         *   `TWILIO_ACCOUNT_SID`
         *   `TWILIO_AUTH_TOKEN`
@@ -77,7 +77,7 @@ Open [http://localhost:9002](http://localhost:9002) with your browser to see the
 
 4.  **Save Changes**: After adding all four variables, click **Save**.
 
-### 2. Deploy Using the Firebase CLI
+### 3. Deploy Using the Firebase CLI
 
 You will need the Firebase Command Line Interface (CLI) to deploy your website.
 
