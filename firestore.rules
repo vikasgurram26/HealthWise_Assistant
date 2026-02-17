@@ -1,0 +1,44 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User Profiles
+    match /userProfiles/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+    
+    match /userProfiles/{userId}/{collection}/{docId} {
+        allow read, write: if isOwner(userId);
+    }
+
+    // Public Collections (Read-Only)
+    match /diseases/{diseaseId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow write: if false;
+    }
+
+    match /vaccines/{vaccineId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow write: if false;
+    }
+    
+    match /symptoms/{symptomId} {
+        allow get: if isSignedIn();
+        allow list: if isSignedIn();
+        allow write: if false;
+    }
+  }
+}

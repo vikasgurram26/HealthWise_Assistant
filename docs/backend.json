@@ -1,0 +1,73 @@
+
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Represents a user's profile information.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the user, matching the auth UID."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's display name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the user profile was created."
+        }
+      },
+      "required": ["id", "email", "createdAt"]
+    },
+    "VaccinationRecord": {
+      "title": "Vaccination Record",
+      "description": "Represents a single vaccination record for a user.",
+      "type": "object",
+      "properties": {
+        "userProfileId": {
+          "type": "string",
+          "description": "The ID of the user this record belongs to."
+        },
+        "vaccine": {
+          "type": "string",
+          "description": "The name of the vaccine."
+        },
+        "dateAdministered": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the vaccine was administered."
+        },
+        "dose": {
+          "type": "string",
+          "description": "The dose number or description (e.g., '1st Dose', 'Booster')."
+        }
+      },
+      "required": ["userProfileId", "vaccine", "dateAdministered"]
+    }
+  },
+  "auth": {
+    "providers": ["Google", "Email"]
+  },
+  "firestore": {
+    "/userProfiles/{userProfileId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Stores the public profiles of users."
+    },
+    "/userProfiles/{userProfileId}/vaccinationRecords/{recordId}": {
+      "schema": {
+        "$ref": "#/entities/VaccinationRecord"
+      },
+      "description": "Stores vaccination records for a specific user."
+    }
+  }
+}
