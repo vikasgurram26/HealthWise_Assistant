@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -15,7 +14,7 @@ import {
 import { useTranslations } from '@/lib/i18n/use-translations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
-import { useUser, signOutUser } from '@/firebase';
+import { useUser, signOutUser, useAuth } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { Skeleton } from '../ui/skeleton';
 import Link from 'next/link';
@@ -24,11 +23,14 @@ export function UserNav() {
   const t = useTranslations('UserNav');
   const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
   const { user, loading } = useUser();
+  const auth = useAuth();
   const router = useRouter();
 
   const handleLogout = async () => {
-    await signOutUser();
-    router.push('/login');
+    if (auth) {
+      await signOutUser(auth);
+      router.push('/login');
+    }
   };
 
   if (loading) {

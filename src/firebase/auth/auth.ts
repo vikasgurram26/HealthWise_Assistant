@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  signOut as firebaseSignOut,
+  signOut,
   type User,
 } from 'firebase/auth';
 import {
@@ -95,5 +95,5 @@ export async function signInWithGoogle(auth: Auth, db: Firestore) {
  * @param auth - The Firebase Auth instance.
  */
 export async function signOutUser(auth: Auth) {
-  return firebaseSignOut(auth);
+  return signOut(auth);
 }
