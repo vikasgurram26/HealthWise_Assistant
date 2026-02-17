@@ -63,7 +63,7 @@ export function AppSidebar() {
 
   const bottomNavItems = [
     { href: '/settings', icon: Settings, label: t('settings') },
-    { href: 'https://wa.me/12292103555', icon: WhatsAppIcon, label: t('contactUs') },
+    { href: 'https://wa.me/14155238886', icon: WhatsAppIcon, label: t('contactUs') },
     { href: '/support', icon: LifeBuoy, label: t('support'), disabled: true },
   ];
 
