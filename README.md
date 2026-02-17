@@ -57,17 +57,25 @@ Open [http://localhost:9002](http://localhost:9002) with your browser to see the
 
 ## Deployment to Firebase App Hosting
 
-This application is configured for easy deployment to Firebase App Hosting.
+### 1. Set Your Secrets in Firebase App Hosting
 
-### 1. Set Your Secrets in Firebase
+**This is a critical step.** Your live application needs these secrets to run. You must set them before your first deployment.
 
-**This is a critical step.** Your live application does not use the `.env` file. You must set your API keys securely in the Firebase console.
+1.  **Go to Firebase App Hosting**: Use this direct link to your project's App Hosting page:
+    [https://console.firebase.google.com/project/studio-7604290226-11533/app-hosting](https://console.firebase.google.com/project/studio-7604290226-11533/app-hosting)
 
-1.  Go to the [Firebase Console](https://console.firebase.google.com/).
-2.  Select your project: **studio-7604290226-11533**
-3.  Navigate to the **App Hosting** section.
-4.  Find your backend and go to its settings.
-5.  In the **Environment variables** section, add each key from your `.env` file (e.g., `GEMINI_API_KEY`) as a new secret.
+2.  **Find Your Backend**: On that page, you should see your backend listed (the name is `nextn`). Click the **three-dot menu (⋮)** next to it and select **Edit backend**.
+
+3.  **Add Secrets**:
+    *   In the "Edit backend" panel that opens, find the **Environment variables** section.
+    *   Click **Add variable**.
+    *   Add the following four variables, one by one. You'll get these values from your `.env` file and your Twilio account.
+        *   `GEMINI_API_KEY`
+        *   `TWILIO_ACCOUNT_SID`
+        *   `TWILIO_AUTH_TOKEN`
+        *   `TWILIO_PHONE_NUMBER`
+
+4.  **Save Changes**: After adding all four variables, click **Save**.
 
 ### 2. Deploy Using the Firebase CLI
 
