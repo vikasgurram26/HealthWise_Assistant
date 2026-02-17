@@ -1,6 +1,8 @@
 
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { LocaleProvider } from '@/lib/i18n/provider';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata = {
   title: 'HealthWise',
@@ -20,8 +22,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        {children}
-        <Toaster />
+        <LocaleProvider>
+          <FirebaseClientProvider>
+            {children}
+            <Toaster />
+          </FirebaseClientProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

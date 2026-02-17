@@ -1,3 +1,4 @@
+
 {
   "AppSidebar": {
     "title": "HealthWise",
@@ -16,7 +17,34 @@
     "profile": "Profile",
     "billing": "Billing",
     "settings": "Settings",
-    "logOut": "Log out"
+    "logOut": "Log out",
+    "logIn": "Log In"
+  },
+  "LoginPage": {
+    "title": "Welcome Back",
+    "description": "Sign in to your HealthWise account to continue.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "signInButton": "Sign In",
+    "googleSignInButton": "Sign In with Google",
+    "separator": "OR",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign Up"
+  },
+  "SignUpPage": {
+    "title": "Create an Account",
+    "description": "Join HealthWise to manage your health.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your Name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "Password",
+    "signUpButton": "Sign Up",
+    "googleSignUpButton": "Sign Up with Google",
+    "separator": "OR",
+    "hasAccount": "Already have an account?",
+    "signInLink": "Sign In"
   },
   "DashboardPage": {
     "title": "Health Dashboard",

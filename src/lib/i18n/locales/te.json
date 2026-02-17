@@ -1,3 +1,4 @@
+
 {
   "AppSidebar": {
     "title": "హెల్త్‌వైజ్",
@@ -16,7 +17,34 @@
     "profile": "ప్రొఫైల్",
     "billing": "బిల్లింగ్",
     "settings": "సెట్టింగ్‌లు",
-    "logOut": "లాగ్ అవుట్"
+    "logOut": "లాగ్ అవుట్",
+    "logIn": "లాగిన్"
+  },
+  "LoginPage": {
+    "title": "తిరిగి స్వాగతం",
+    "description": "కొనసాగించడానికి మీ హెల్త్‌వైజ్ ఖాతాకు సైన్ ఇన్ చేయండి.",
+    "emailLabel": "ఇమెయిల్",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "పాస్‌వర్డ్",
+    "signInButton": "సైన్ ఇన్ చేయండి",
+    "googleSignInButton": "Googleతో సైన్ ఇన్ చేయండి",
+    "separator": "లేదా",
+    "noAccount": "ఖాతా లేదా?",
+    "signUpLink": "సైన్ అప్ చేయండి"
+  },
+  "SignUpPage": {
+    "title": "ఖాతాను సృష్టించండి",
+    "description": "మీ ఆరోగ్యాన్ని నిర్వహించడానికి హెల్త్‌వైజ్‌లో చేరండి.",
+    "nameLabel": "పేరు",
+    "namePlaceholder": "మీ పేరు",
+    "emailLabel": "ఇమెయిల్",
+    "emailPlaceholder": "name@example.com",
+    "passwordLabel": "పాస్‌వర్డ్",
+    "signUpButton": "సైన్ అప్ చేయండి",
+    "googleSignUpButton": "Googleతో సైన్ అప్ చేయండి",
+    "separator": "లేదా",
+    "hasAccount": "ఇప్పటికే ఖాతా ఉందా?",
+    "signInLink": "సైన్ ఇన్ చేయండి"
   },
   "DashboardPage": {
     "title": "ఆరోగ్య డాష్‌బోర్డ్",
