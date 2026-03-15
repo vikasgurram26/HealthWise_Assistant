@@ -30,8 +30,6 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 *   Click **Save**.
 
 ### 3. Deploy Your Changes
-There are two ways to make your changes live:
-
 **Option A: The Publish Button (Easiest)**
 *   Simply click the **"Publish"** button in the top-right corner of this Firebase Studio interface. This will start an automatic build and deployment process.
 
@@ -44,13 +42,23 @@ There are two ways to make your changes live:
 
 ## 🟢 WhatsApp Integration Setup
 
-To connect your AI to WhatsApp:
+To connect your AI to WhatsApp using Twilio:
 
-1.  **Get a Twilio WhatsApp Number**: Use the Twilio Console Sandbox for testing.
-2.  **Set the Webhook**: 
-    *   In Twilio, go to **Messaging > Settings > WhatsApp Sandbox Settings**.
-    *   Enter your **LIVE URL** followed by `/api/whatsapp` (e.g., `https://your-app.web.app/api/whatsapp`).
-    *   Set the method to **POST**.
+1.  **Join the Twilio Sandbox**:
+    *   Log in to the **[Twilio Console](https://console.twilio.com/)**.
+    *   Go to **Messaging > Try it out > Send a WhatsApp message**.
+    *   Follow the instructions to send a WhatsApp message (usually "join <word>") to the Twilio number provided. This links your phone to the sandbox.
+
+2.  **Configure the Webhook**:
+    *   In the Twilio Console, go to **Messaging > Settings > WhatsApp Sandbox Settings**.
+    *   Locate the field labeled **"When a message comes in"**.
+    *   Enter your **LIVE URL** followed by `/api/whatsapp` (e.g., `https://your-app-id.web.app/api/whatsapp`).
+    *   Ensure the dropdown next to it is set to **POST**.
+    *   Click **Save**.
+
+3.  **Test It**:
+    *   Send a message like "Hi, I have a fever" to the Twilio WhatsApp number.
+    *   Your AI assistant will reply directly in WhatsApp!
 
 ---
 
@@ -64,5 +72,5 @@ If Google Sign-In fails:
 ### Billing Error [OR_BACR2_44]
 If you cannot upgrade to the Blaze plan:
 1.  Ensure your card has **International Transactions** enabled.
-2.  Try a different Credit/Debit card.
+2.  Try a different Credit/Debit card (Visa/Mastercard preferred).
 3.  Contact **[Google Billing Support](https://support.google.com/cloud/contact/cloud_billing_support)**.
