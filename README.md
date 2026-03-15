@@ -62,6 +62,16 @@ To connect your AI to WhatsApp using Twilio:
 
 ---
 
+## ✅ Final Launch Checklist
+
+Before you test, make sure:
+1. [ ] You clicked **Save** on the Twilio Sandbox settings page.
+2. [ ] You sent the "join" message from your WhatsApp to the Twilio number.
+3. [ ] You added all 4 **Secrets** in the Firebase App Hosting console.
+4. [ ] You clicked **Publish** in Firebase Studio and the deployment finished.
+
+---
+
 ## 🛠 Troubleshooting
 
 ### Error: auth/unauthorized-domain
