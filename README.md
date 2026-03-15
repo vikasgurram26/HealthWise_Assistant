@@ -30,7 +30,12 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 *   Click **Save**.
 
 ### 3. Deploy Your Changes
-To push your latest code from the Studio to the Live Site, run these commands in your terminal:
+There are two ways to make your changes live:
+
+**Option A: The Publish Button (Easiest)**
+*   Simply click the **"Publish"** button in the top-right corner of this Firebase Studio interface. This will start an automatic build and deployment process.
+
+**Option B: Using the Terminal**
 1.  `npm install -g firebase-tools` (if not already installed)
 2.  `firebase login`
 3.  `firebase deploy`
