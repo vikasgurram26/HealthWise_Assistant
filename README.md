@@ -33,32 +33,24 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 **Option A: The Publish Button (Easiest)**
 *   Simply click the **"Publish"** button in the top-right corner of this Firebase Studio interface. This will start an automatic build and deployment process.
 
-**Option B: Using the Terminal**
-1.  `npm install -g firebase-tools` (if not already installed)
-2.  `firebase login`
-3.  `firebase deploy`
-
 ---
 
-## 🟢 WhatsApp Integration Setup
+## 🟢 WhatsApp Integration Setup (Twilio Sandbox)
 
-To connect your AI to WhatsApp using Twilio:
+To connect your AI to WhatsApp:
 
-1.  **Join the Twilio Sandbox**:
-    *   Log in to the **[Twilio Console](https://console.twilio.com/)**.
-    *   Go to **Messaging > Try it out > Send a WhatsApp message**.
-    *   Follow the instructions to send a WhatsApp message (usually "join <word>") to the Twilio number provided. This links your phone to the sandbox.
-
-2.  **Configure the Webhook**:
+1.  **Configure the Webhook**:
     *   In the Twilio Console, go to **Messaging > Settings > WhatsApp Sandbox Settings**.
-    *   Locate the field labeled **"When a message comes in"**.
-    *   Enter your **LIVE URL**: `https://studio--studio-7604290226-11533.us-central1.hosted.app/api/whatsapp`
-    *   Ensure the dropdown next to it is set to **POST**.
+    *   **URL**: `https://studio--studio-7604290226-11533.us-central1.hosted.app/api/whatsapp`
+    *   **Method**: `POST`
     *   Click **Save**.
 
-3.  **Test It**:
-    *   Send a message like "Hi, I have a fever" to the Twilio WhatsApp number.
-    *   Your AI assistant will reply directly in WhatsApp!
+2.  **Testing (IMPORTANT)**:
+    *   **EVERY NEW USER** must first join your sandbox.
+    *   Go to **Messaging > Try it out > Send a WhatsApp message**.
+    *   Look for the bold code (e.g., **join apple-sauce**).
+    *   The user must send that exact code to the Twilio number first.
+    *   Once they receive a confirmation message, they can chat with your AI!
 
 ---
 
