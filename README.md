@@ -1,4 +1,4 @@
-# HealthWise_Assistant
+# HealthWise Assistant
 
 This is an AI-powered health assistant application built with Next.js, Firebase, and Google's Generative AI.
 
@@ -13,80 +13,54 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ### Installation
 
-1.  Clone the repository:
-    ```bash
-    git clone <your-repository-url>
-    ```
-2.  Navigate to the project directory:
-    ```bash
-    cd HealthWise_Assistant
-    ```
-3.  Install the dependencies:
-    ```bash
-    npm install
-    ```
+1.  Clone the repository.
+2.  Navigate to the project directory: `cd HealthWise_Assistant`
+3.  Install dependencies: `npm install`
 
 ### Environment Variables
 
-This project requires several API keys and configuration values to run.
+Create a `.env` file in the root and add:
+*   `GEMINI_API_KEY`: From [Google AI Studio](https://aistudio.google.com/app/apikey).
+*   `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`: From your [Twilio Console](https://www.twilio.com/console).
 
-1.  **Create a `.env` file** in the root of your project.
-2.  **Copy the contents** of `.env.example` into your new `.env` file.
-3.  **Fill in the values**:
-    *   `GEMINI_API_KEY`: Get this from [Google AI Studio](https://aistudio.google.com/app/apikey).
-    *   `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`: Get these from your [Twilio Console](https://www.twilio.com/console).
+---
+
+## 🟢 WhatsApp Integration Setup
+
+To connect your AI to WhatsApp, follow these steps:
+
+1.  **Get a Twilio WhatsApp Number**: In the Twilio Console, go to **Messaging > Try it Out > Send a WhatsApp message** to set up your Sandbox.
+2.  **Set the Webhook**: 
+    *   In Twilio, go to **Messaging > Settings > WhatsApp Sandbox Settings**.
+    *   Find the field **"When a message comes in"**.
+    *   Enter your live URL followed by the API path: `https://your-app-url.com/api/whatsapp`.
+    *   Set the method to **POST**.
+3.  **Add Secrets**: Ensure your `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, and `TWILIO_PHONE_NUMBER` are added to your Firebase App Hosting environment variables.
+
+---
 
 ## Troubleshooting Authentication
 
 ### Error: auth/unauthorized-domain
-If you see this error when signing in with Google, you need to whitelist your current domain:
+If you see this error when signing in with Google:
 1.  Go to the **[Firebase Authentication Settings](https://console.firebase.google.com/project/studio-7604290226-11533/authentication/settings)**.
 2.  Click on **Authorized domains**.
 3.  Click **Add domain**.
-4.  Enter this exact domain: `studio--studio-7604290226-11533.us-central1.hosted.app` and click **Add**.
+4.  Enter: `studio--studio-7604290226-11533.us-central1.hosted.app` and click **Add**.
 
 ## Deployment to Firebase App Hosting
 
-### 1. Upgrade Your Firebase Project to the Blaze Plan (MANDATORY)
+### 1. Upgrade to Blaze Plan (MANDATORY)
+Firebase App Hosting requires the **"Blaze" (pay-as-you-go)** plan. You still get a generous free tier.
+*   Go to the **[Firebase Console](https://console.firebase.google.com/project/studio-7604290226-11533/overview)**.
+*   Click the **"Upgrade"** button at the bottom left.
 
-Firebase App Hosting requires your project to be on the **"Blaze" (pay-as-you-go)** plan. Even though there is a generous free tier, this plan is required to enable the necessary cloud resources.
+### 2. Set Your Secrets
+*   Go to **[App Hosting](https://console.firebase.google.com/project/studio-7604290226-11533/hosting)**.
+*   Find your backend, click **⋮ > Edit backend**.
+*   Add: `GEMINI_API_KEY`, `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`.
 
-1.  Go to the **[Firebase Console](https://console.firebase.google.com/project/studio-7604290226-11533/overview)**.
-2.  Click the **"Upgrade"** button at the bottom left of the sidebar.
-3.  Follow the steps to associate a billing account.
-
-#### Troubleshooting Billing Error [OR_BACR2_44]
-If you see this error during the upgrade:
-*   **Try a different card:** Credit cards (Visa/Mastercard) are more reliable than Debit or UPI.
-*   **Enable International Usage:** Ensure your bank allows international online transactions.
-*   **Contact Support:** Contact [Google Cloud Billing Support](https://support.google.com/cloud/contact/cloud_billing_support) directly to clear the block on your account.
-
-### 2. Set Your Secrets in Firebase App Hosting
-
-After upgrading, you must set your API keys as secrets so the live app can use them.
-
-1.  Go to the **[App Hosting page](https://console.firebase.google.com/project/studio-7604290226-11533/hosting)**.
-2.  Find your backend (e.g., `nextn`), click the **three-dot menu (⋮)**, and select **Edit backend**.
-3.  In the **Environment variables** section, click **Add variable** and add these four:
-    *   `GEMINI_API_KEY`
-    *   `TWILIO_ACCOUNT_SID`
-    *   `TWILIO_AUTH_TOKEN`
-    *   `TWILIO_PHONE_NUMBER`
-4.  Click **Save**.
-
-### 3. Deploy Using the Firebase CLI
-
-1.  **Install Firebase Tools** globally:
-    ```bash
-    npm install -g firebase-tools
-    ```
-2.  **Log in to Firebase**:
-    ```bash
-    firebase login
-    ```
-3.  **Deploy**:
-    ```bash
-    firebase deploy
-    ```
-
-Your live URL will be provided in the terminal output once the process completes.
+### 3. Deploy CLI
+1.  `npm install -g firebase-tools`
+2.  `firebase login`
+3.  `firebase deploy`
