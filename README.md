@@ -36,6 +36,15 @@ This project requires several API keys and configuration values to run.
     *   `GEMINI_API_KEY`: Get this from [Google AI Studio](https://aistudio.google.com/app/apikey).
     *   `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER`: Get these from your [Twilio Console](https://www.twilio.com/console).
 
+## Troubleshooting Authentication
+
+### Error: auth/unauthorized-domain
+If you see this error when signing in with Google, you need to whitelist your current domain:
+1.  Go to the **[Firebase Authentication Settings](https://console.firebase.google.com/project/studio-7604290226-11533/authentication/settings)**.
+2.  Click on **Authorized domains**.
+3.  Click **Add domain**.
+4.  Enter the domain of your current running app (e.g., the URL in your browser without `https://` and path) and click **Add**.
+
 ## Deployment to Firebase App Hosting
 
 ### 1. Upgrade Your Firebase Project to the Blaze Plan (MANDATORY)
