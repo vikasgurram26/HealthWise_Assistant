@@ -52,7 +52,7 @@ To connect your AI to WhatsApp using Twilio:
 2.  **Configure the Webhook**:
     *   In the Twilio Console, go to **Messaging > Settings > WhatsApp Sandbox Settings**.
     *   Locate the field labeled **"When a message comes in"**.
-    *   Enter your **LIVE URL** followed by `/api/whatsapp` (e.g., `https://your-app-id.web.app/api/whatsapp`).
+    *   Enter your **LIVE URL**: `https://studio--studio-7604290226-11533.us-central1.hosted.app/api/whatsapp`
     *   Ensure the dropdown next to it is set to **POST**.
     *   Click **Save**.
 
