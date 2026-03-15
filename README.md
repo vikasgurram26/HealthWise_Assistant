@@ -43,7 +43,7 @@ If you see this error when signing in with Google, you need to whitelist your cu
 1.  Go to the **[Firebase Authentication Settings](https://console.firebase.google.com/project/studio-7604290226-11533/authentication/settings)**.
 2.  Click on **Authorized domains**.
 3.  Click **Add domain**.
-4.  Enter the domain of your current running app (e.g., the URL in your browser without `https://` and path) and click **Add**.
+4.  Enter this exact domain: `studio--studio-7604290226-11533.us-central1.hosted.app` and click **Add**.
 
 ## Deployment to Firebase App Hosting
 
