@@ -8,7 +8,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import {z} from 'zod';
 
 const PreventiveHealthcareInfoInputSchema = z.object({
   disease: z.string().describe('The disease to get preventive healthcare information for.'),
@@ -24,7 +24,15 @@ export type PreventiveHealthcareInfoOutput = z.infer<typeof PreventiveHealthcare
 export async function getPreventiveHealthcareInfo(
   input: PreventiveHealthcareInfoInput
 ): Promise<PreventiveHealthcareInfoOutput> {
-  return preventiveHealthcareInfoFlow(input);
+  try {
+    return await preventiveHealthcareInfoFlow(input);
+  } catch (error) {
+    console.error('Preventive Info AI Error:', error);
+    return {
+      preventiveMeasures: "We are currently unable to retrieve specific preventive measures due to a service interruption.",
+      applicationGuidance: "Please consult with a healthcare professional or visit official health organization websites like WHO or CDC for reliable information."
+    };
+  }
 }
 
 const prompt = ai.definePrompt({

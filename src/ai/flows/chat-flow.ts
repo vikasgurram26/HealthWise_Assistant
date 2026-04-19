@@ -4,11 +4,10 @@
  *
  * This flow manages a chat conversation, maintaining history and using a
  * system prompt to guide the AI's behavior as a helpful health assistant.
- * It now supports a specific language parameter for multi-lingual interaction.
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 
 const ChatContentSchema = z.object({
   text: z.string(),
@@ -39,21 +38,27 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatResponseSchema,
   },
   async ({ history, prompt, language = 'English' }) => {
-    const { text } = await ai.generate({
-      prompt,
-      history,
-      system: `You are a friendly and helpful AI assistant for HealthWise.
+    try {
+      const { text } = await ai.generate({
+        prompt,
+        history,
+        system: `You are a friendly and helpful AI assistant for HealthWise.
 Your goal is to provide accurate and easy-to-understand health information.
 Always be supportive and empathetic.
 You MUST respond to the user in the ${language} language.
 When appropriate, you can suggest the user navigate to other pages of the app, like 'Symptom Guidance' or 'Preventive Care', but do not provide links.
 You MUST NOT provide medical advice, diagnosis, or treatment. Always include a disclaimer to consult a healthcare professional for any health concerns.`,
-    });
+      });
 
-    return { text };
+      return { text: text || 'I am sorry, I could not generate a response.' };
+    } catch (error) {
+      console.error('Chat AI Error:', error);
+      return { 
+        text: "I'm currently experiencing a high volume of requests and am taking a short break. Please try messaging me again in a few moments!" 
+      };
+    }
   }
 );
-
 
 export async function chat(request: ChatRequest): Promise<ChatResponse> {
   return await chatFlow(request);

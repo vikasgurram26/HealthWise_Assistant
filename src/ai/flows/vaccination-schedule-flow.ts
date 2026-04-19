@@ -1,15 +1,10 @@
 'use server';
 /**
  * @fileOverview An AI agent that provides vaccination schedule recommendations.
- *
- * - getVaccinationSchedule - A function that retrieves recommended vaccinations for an age group.
- * - VaccinationScheduleInput - The input type for the getVaccinationSchedule function.
- * - VaccinationScheduleOutput - The return type for the getVaccinationSchedule function.
- * - Vaccination - Represents a single vaccine recommendation.
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 
 const VaccinationScheduleInputSchema = z.object({
   ageGroup: z
@@ -39,7 +34,14 @@ export type VaccinationScheduleOutput = z.infer<
 export async function getVaccinationSchedule(
   input: VaccinationScheduleInput
 ): Promise<VaccinationScheduleOutput> {
-  return vaccinationScheduleFlow(input);
+  try {
+    return await vaccinationScheduleFlow(input);
+  } catch (error) {
+    console.error('Vaccination Schedule AI Error:', error);
+    return {
+      recommendations: []
+    };
+  }
 }
 
 const prompt = ai.definePrompt({
