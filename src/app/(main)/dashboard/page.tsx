@@ -15,6 +15,7 @@ import { RecentAlerts } from '@/components/dashboard/recent-alerts';
 import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card';
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
+import { GamificationCard } from '@/components/dashboard/gamification-card';
 import { useTranslations } from '@/lib/i18n/use-translations';
 import { useUser } from '@/firebase';
 
@@ -33,10 +34,17 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Stat Cards */}
-      <Suspense fallback={<StatCardsLoading />}>
-        <StatCards />
-      </Suspense>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+        <div className="md:col-span-3">
+           {/* Stat Cards */}
+          <Suspense fallback={<StatCardsLoading />}>
+            <StatCards />
+          </Suspense>
+        </div>
+        <div className="md:col-span-1">
+           <GamificationCard />
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Left Column - Main News and Alerts */}

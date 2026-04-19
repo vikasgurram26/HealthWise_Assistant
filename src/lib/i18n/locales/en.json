@@ -204,5 +204,14 @@
     "errorDescription": "Could not save the vaccination record. Please try again.",
     "missingInfoTitle": "Missing Information",
     "missingInfoDescription": "Please fill out all fields to add a record."
+  },
+  "GamificationCard": {
+    "healthScore": "Health Score",
+    "streak": "Daily Streak",
+    "days": "{count} days",
+    "checkIn": "Daily Check-in",
+    "checkedIn": "Checked in today!",
+    "reward": "+10 points awarded!",
+    "description": "Stay active and earn rewards for your consistency!"
   }
 }
