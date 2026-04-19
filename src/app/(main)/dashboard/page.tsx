@@ -15,7 +15,7 @@ import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card'
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
 import { GamificationCard } from '@/components/dashboard/gamification-card';
-import { DoctorIntro } from '@/components/dashboard/doctor-intro';
+import { WelcomeVideoOverlay } from '@/components/dashboard/welcome-video-overlay';
 import { useTranslations } from '@/lib/i18n/use-translations';
 import { useUser } from '@/firebase';
 import { Sparkles } from 'lucide-react';
@@ -26,7 +26,7 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-8 pb-10">
-      <DoctorIntro />
+      <WelcomeVideoOverlay />
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-accent p-8 text-primary-foreground shadow-2xl md:p-12">
         <div className="relative z-10 flex flex-col gap-4">
           <div className="flex items-center gap-2 text-primary-foreground/80">
