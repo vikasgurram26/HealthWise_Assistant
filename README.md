@@ -18,8 +18,8 @@ Firebase App Hosting requires the **"Blaze" (pay-as-you-go)** plan. You still ge
 *   Go to the **[Firebase Console](https://console.firebase.google.com/project/studio-7604290226-11533/overview)**.
 *   Click the **"Upgrade"** button at the bottom left.
 
-### 2. Set Your Secrets
-Before your first deployment, you must add your API keys to the App Hosting dashboard:
+### 2. Set Your Secrets (Crucial for AI to work)
+Before your first deployment, you must add your API keys to the App Hosting dashboard. **Do NOT put these keys in your code.**
 *   Go to **[App Hosting](https://console.firebase.google.com/project/studio-7604290226-11533/hosting)**.
 *   Find your backend (e.g., `nextn`), click **⋮ > Edit backend**.
 *   Add the following variables:
@@ -37,29 +37,20 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 
 ## 🐙 Manual GitHub Synchronization
 
-### Push Commands
-If you are working locally and want to push your code to GitHub, follow these commands:
+Since GitHub requires **Personal Access Tokens (PAT)** for authentication, use the following commands in your terminal:
 
-1. **Connect to your repo** (only needs to be done once):
+1. **Configure your Token (Run this first)**:
    ```bash
-   git remote add origin <YOUR_GITHUB_REPO_URL>
+   git remote set-url origin https://<YOUR_GITHUB_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git
    ```
+   *(Replace `<YOUR_GITHUB_TOKEN>` with the token you generated on GitHub)*.
 
 2. **Upload your changes**:
    ```bash
    git add .
-   git commit -m "Update health assistant features"
+   git commit -m "Final codebase update"
    git push -u origin main
    ```
-
-### 🔐 Authentication Error Fix (Invalid username or token)
-GitHub does not accept passwords for Git commands. You must use a **Personal Access Token (PAT)**.
-
-1. **Generate Token**: Go to GitHub **Settings > Developer settings > Personal access tokens > Tokens (classic)**.
-2. **Permissions**: Generate a new token with the `repo` scope selected.
-3. **Usage**: When the terminal asks for your password, **paste the token** instead.
-4. **Shortcut**: To save the token and stop being asked, use:
-   `git remote set-url origin https://<YOUR_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git`
 
 ---
 
@@ -75,10 +66,8 @@ To connect your AI to WhatsApp:
 
 2.  **Testing (IMPORTANT)**:
     *   **EVERY NEW USER** must first join your sandbox.
-    *   Go to **Messaging > Try it out > Send a WhatsApp message**.
-    *   Look for the bold code (e.g., **join apple-sauce**).
-    *   The user must send that exact code to the Twilio number first.
-    *   Once they receive a confirmation message, they can chat with your AI!
+    *   The user must send the bold "join" code (e.g., **join apple-sauce**) to your Twilio number.
+    *   Once they receive a confirmation message, they can chat with your AI via WhatsApp!
 
 ---
 
@@ -89,18 +78,3 @@ Before you test, make sure:
 2. [ ] You sent the "join" message from your WhatsApp to the Twilio number.
 3. [ ] You added all 4 **Secrets** in the Firebase App Hosting console.
 4. [ ] You clicked **Publish** in Firebase Studio and the deployment finished.
-
----
-
-## 🛠 Troubleshooting
-
-### Error: auth/unauthorized-domain
-If Google Sign-In fails:
-1.  Go to **[Authentication > Settings > Authorized domains](https://console.firebase.google.com/project/studio-7604290226-11533/authentication/settings)**.
-2.  Add: `studio--studio-7604290226-11533.us-central1.hosted.app`
-
-### Billing Error [OR_BACR2_44]
-If you cannot upgrade to the Blaze plan:
-1.  Ensure your card has **International Transactions** enabled.
-2.  Try a different Credit/Debit card (Visa/Mastercard preferred).
-3.  Contact **[Google Billing Support](https://support.google.com/cloud/contact/cloud_billing_support)**.
