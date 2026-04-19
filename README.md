@@ -44,7 +44,6 @@ Run these in your terminal:
 
 ```bash
 # 1. Update the remote URL with your token (REPLACE <YOUR_TOKEN> with your actual token)
-git remote set-url origin https://<YOUR_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git
 
 # 2. Upload your changes
 git add .
