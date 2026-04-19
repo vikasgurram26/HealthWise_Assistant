@@ -84,5 +84,14 @@ const symptomGuidanceFlow = ai.defineFlow(
 );
 
 export async function symptomGuidance(input: SymptomGuidanceInput): Promise<SymptomGuidanceOutput> {
-  return symptomGuidanceFlow(input);
+  try {
+    return await symptomGuidanceFlow(input);
+  } catch (error) {
+    console.error('Symptom Guidance AI Error:', error);
+    return {
+      status: 'collecting_info',
+      message: "I'm sorry, I'm having trouble analyzing your symptoms right now due to a temporary service interruption. Please try again in a moment.",
+      disclaimer: "If you are experiencing a medical emergency, please contact your local emergency services immediately."
+    };
+  }
 }
