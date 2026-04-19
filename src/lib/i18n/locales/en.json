@@ -49,7 +49,11 @@
   },
   "DashboardPage": {
     "title": "Health Dashboard",
-    "description": "Your central hub for health statistics, alerts, and tools."
+    "welcomeUser": "Welcome back, {name}",
+    "description": "Your central hub for health statistics, alerts, and tools.",
+    "healthTipTitle": "Health Tip of the Day",
+    "healthTipContent": "Drinking enough water and staying active are the simplest ways to maintain good health. Aim for at least 8 glasses of water today!",
+    "quickActions": "Health Tools"
   },
   "StatCards": {
     "totalCases": "Total Cases",
@@ -60,10 +64,12 @@
     "worldwide": "Worldwide"
   },
   "RecentAlerts": {
-    "title": "Recent Outbreak Alerts",
-    "description": "Latest news from the WHO.",
+    "title": "Latest Outbreak News",
+    "description": "Real-time updates from the World Health Organization.",
     "fetchError": "Could not fetch recent alerts.",
-    "viewAll": "View All Alerts"
+    "viewAll": "View All News",
+    "readFullArticle": "Read full article",
+    "openSource": "Open WHO source"
   },
   "SymptomCheckerCard": {
     "title": "Symptom Checker",

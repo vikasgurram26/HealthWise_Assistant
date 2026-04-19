@@ -16,13 +16,18 @@ import { SymptomCheckerCard } from '@/components/dashboard/symptom-checker-card'
 import { PreventiveCareCard } from '@/components/dashboard/preventive-care-card';
 import { VaccinationCard } from '@/components/dashboard/vaccination-card';
 import { useTranslations } from '@/lib/i18n/use-translations';
+import { useUser } from '@/firebase';
 
 export default function DashboardPage() {
   const t = useTranslations('DashboardPage');
+  const { user } = useUser();
+
   return (
     <div className="flex flex-col gap-6">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-3xl font-bold tracking-tight">
+          {user?.displayName ? t('welcomeUser', { name: user.displayName }) : t('title')}
+        </h1>
         <p className="text-muted-foreground">
           {t('description')}
         </p>
@@ -34,15 +39,27 @@ export default function DashboardPage() {
       </Suspense>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Left Column */}
+        {/* Left Column - Main News and Alerts */}
         <div className="flex flex-col gap-6 lg:col-span-2">
-          <Suspense fallback={<Skeleton className="h-64" />}>
+          <Suspense fallback={<Skeleton className="h-96 w-full" />}>
             <RecentAlerts />
           </Suspense>
+          
+          <Card className="bg-primary/5 border-primary/20">
+            <CardHeader>
+              <CardTitle className="text-lg">{t('healthTipTitle')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm italic">
+                "{t('healthTipContent')}"
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Right Column */}
+        {/* Right Column - Quick Actions */}
         <div className="flex flex-col gap-6">
+          <h2 className="text-lg font-semibold px-1">{t('quickActions')}</h2>
           <SymptomCheckerCard />
           <PreventiveCareCard />
           <VaccinationCard />
