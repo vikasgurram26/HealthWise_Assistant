@@ -1,42 +1,38 @@
 'use server';
 /**
- * @fileOverview This file defines a Genkit flow for providing symptom guidance to users.
+ * @fileOverview This file defines an interactive Genkit flow for intelligent symptom triage.
  *
- * The flow takes user-reported symptoms as input and returns possible conditions,
- * considering any outbreak alerts in the user's area.
- *
- * @interface SymptomGuidanceInput - Represents the input for the symptom guidance flow.
- * @interface SymptomGuidanceOutput - Represents the output of the symptom guidance flow.
- * @function symptomGuidance - The main function to initiate the symptom guidance flow.
+ * The flow manages a conversation to collect symptoms, asks follow-up questions,
+ * and eventually provides an analysis with probability levels for possible conditions.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 import { getOutbreakAlerts } from '@/lib/outbreak-alerts';
 
+const TriageMessageSchema = z.object({
+  role: z.enum(['user', 'model']),
+  text: z.string(),
+});
+export type TriageMessage = z.infer<typeof TriageMessageSchema>;
+
 const SymptomGuidanceInputSchema = z.object({
-  symptoms: z.string().describe('A description of the symptoms the user is experiencing.'),
+  history: z.array(TriageMessageSchema).describe('The conversation history of the triage.'),
   location: z.string().describe('The user provided location to check for local outbreak alerts.'),
 });
 export type SymptomGuidanceInput = z.infer<typeof SymptomGuidanceInputSchema>;
 
 const SymptomGuidanceOutputSchema = z.object({
-  possibleConditions: z
-    .string()
-    .describe(
-      'A list of possible medical conditions based on the symptoms and considering outbreak alerts.'
-    ),
-  disclaimer: z
-    .string()
-    .describe(
-      'A disclaimer that the information provided is not a substitute for professional medical advice.'
-    ),
+  status: z.enum(['collecting_info', 'analysis_complete']).describe('Whether more info is needed or analysis is done.'),
+  message: z.string().describe('The AI response to the user (e.g., follow-up questions or final summary).'),
+  analysis: z.array(z.object({
+    condition: z.string(),
+    probability: z.number().describe('Probability percentage from 0 to 100'),
+    reasoning: z.string(),
+  })).optional().describe('The structured analysis of possible conditions.'),
+  disclaimer: z.string().describe('Standard medical disclaimer.'),
 });
 export type SymptomGuidanceOutput = z.infer<typeof SymptomGuidanceOutputSchema>;
-
-export async function symptomGuidance(input: SymptomGuidanceInput): Promise<SymptomGuidanceOutput> {
-  return symptomGuidanceFlow(input);
-}
 
 const getOutbreakAlertsTool = ai.defineTool(
     {
@@ -58,16 +54,21 @@ const symptomGuidancePrompt = ai.definePrompt({
   input: {schema: SymptomGuidanceInputSchema},
   output: {schema: SymptomGuidanceOutputSchema},
   tools: [getOutbreakAlertsTool],
-  prompt: `You are an AI-driven health assistant that provides guidance on possible medical conditions based on user-reported symptoms.
+  prompt: `You are an expert AI triage assistant. Your goal is to help users understand their symptoms through a dynamic conversation.
 
-  Take into account the user's location to check for any relevant disease outbreak alerts in the area by using the getOutbreakAlerts tool.
-  Based on the symptoms and any outbreak alerts, provide a list of possible conditions.
+  GUIDELINES:
+  1. If the user provides vague symptoms, ask concise follow-up questions (one or two at a time) to understand the severity, duration, and specific characteristics.
+  2. Set "status" to "collecting_info" while you are still asking questions.
+  3. Once you have enough information, set "status" to "analysis_complete" and provide a structured list of possible conditions with probability levels (e.g., "70% Flu", "20% Common Cold").
+  4. Always use the getOutbreakAlerts tool for the provided location ({{{location}}}) to see if local outbreaks might explain the symptoms.
+  5. Your tone should be clinical, professional, but empathetic.
 
-  Symptoms: {{{symptoms}}}
-  Location: {{{location}}}
+  CONVERSATION HISTORY:
+  {{#each history}}
+  {{role}}: {{{text}}}
+  {{/each}}
 
-  Include a disclaimer that the information provided is not a substitute for professional medical advice.
-  Format the output as a JSON object that satisfies the SymptomGuidanceOutputSchema.`,
+  Always include a standard medical disclaimer.`,
 });
 
 const symptomGuidanceFlow = ai.defineFlow(
@@ -81,3 +82,7 @@ const symptomGuidanceFlow = ai.defineFlow(
     return output!;
   }
 );
+
+export async function symptomGuidance(input: SymptomGuidanceInput): Promise<SymptomGuidanceOutput> {
+  return symptomGuidanceFlow(input);
+}

@@ -1,4 +1,3 @@
-
 {
   "AppSidebar": {
     "title": "हेल्थवाइज",
@@ -88,21 +87,20 @@
     "errorMessage": "क्षमा करें, कुछ गलत हो गया।"
   },
   "SymptomGuidancePage": {
-    "title": "लक्षण मार्गदर्शन",
-    "description": "एआई-संचालित मार्गदर्शन प्राप्त करने के लिए अपने लक्षणों का वर्णन करें।",
-    "symptomsLabel": "आपके लक्षण",
-    "symptomsPlaceholder": "जैसे, बुखार, खांसी, सिरदर्द",
+    "title": "बुद्धिमान छँटाई",
+    "description": "हमारा एआई सहायक आपके लक्षणों का विश्लेषण करने के लिए अनुवर्ती प्रश्न पूछेगा।",
     "locationLabel": "आपका स्थान",
     "locationPlaceholder": "जैसे, न्यूयॉर्क, एनवाई",
-    "button": "मार्गदर्शन प्राप्त करें",
-    "loadingButton": "मार्गदर्शन प्राप्त हो रहा है...",
-    "missingInfoTitle": "जानकारी अधूरी है",
-    "missingInfoDescription": "कृपया लक्षण और स्थान दोनों दर्ज करें।",
-    "errorTitle": "एक त्रुटि हुई",
-    "errorDescription": "एआई-संचालित मार्गदर्शन प्राप्त करने में विफल।",
-    "loadingTitle": "विश्लेषण प्रगति पर है...",
-    "resultsTitle": "संभावित स्थितियाँ",
-    "disclaimerTitle": "अस्वीकरण"
+    "chatPlaceholder": "अपने लक्षणों का वर्णन करें...",
+    "startInstruction": "कृपया ऊपर अपना स्थान प्रदान करें, फिर विश्लेषण शुरू करने के लिए बताएं कि आप कैसा महसूस कर रहे हैं।",
+    "analysisTitle": "संभावित स्थितियाँ और संभावना",
+    "disclaimerTitle": "चिकित्सा अस्वीकरण",
+    "reset": "फिर से शुरू करें",
+    "startOver": "नई छँटाई शुरू करें",
+    "missingLocationTitle": "स्थान आवश्यक है",
+    "missingLocationDescription": "स्थानीय स्वास्थ्य अलर्ट की जांच के लिए कृपया अपना स्थान दर्ज करें।",
+    "errorTitle": "प्रणाली त्रुटि",
+    "errorDescription": "विश्लेषण के दौरान हमें एक समस्या का सामना करना पड़ा। कृपया पुनः प्रयास करें।"
   },
   "PreventiveHealthcarePage": {
     "title": "निवारक स्वास्थ्य सेवा",

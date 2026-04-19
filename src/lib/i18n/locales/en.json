@@ -1,4 +1,3 @@
-
 {
   "AppSidebar": {
     "title": "HealthWise",
@@ -94,21 +93,20 @@
     "errorMessage": "Sorry, something went wrong."
   },
   "SymptomGuidancePage": {
-    "title": "Symptom Guidance",
-    "description": "Describe your symptoms to get AI-powered guidance.",
-    "symptomsLabel": "Your Symptoms",
-    "symptomsPlaceholder": "e.g., fever, cough, headache",
+    "title": "Intelligent Triage",
+    "description": "Our AI assistant will ask follow-up questions to analyze your symptoms.",
     "locationLabel": "Your Location",
     "locationPlaceholder": "e.g., New York, NY",
-    "button": "Get Guidance",
-    "loadingButton": "Getting Guidance...",
-    "missingInfoTitle": "Missing Information",
-    "missingInfoDescription": "Please enter both symptoms and location.",
-    "errorTitle": "An Error Occurred",
-    "errorDescription": "Failed to get AI-powered guidance.",
-    "loadingTitle": "Analysis in Progress...",
-    "resultsTitle": "Possible Conditions",
-    "disclaimerTitle": "Disclaimer"
+    "chatPlaceholder": "Describe your symptoms...",
+    "startInstruction": "Please provide your location above, then describe how you are feeling to begin the analysis.",
+    "analysisTitle": "Possible Conditions & Probability",
+    "disclaimerTitle": "Medical Disclaimer",
+    "reset": "Start Over",
+    "startOver": "Begin New Triage",
+    "missingLocationTitle": "Location Required",
+    "missingLocationDescription": "Please enter your location to check for local health alerts.",
+    "errorTitle": "System Error",
+    "errorDescription": "We encountered an issue during analysis. Please try again."
   },
   "PreventiveHealthcarePage": {
     "title": "Preventive Healthcare",
