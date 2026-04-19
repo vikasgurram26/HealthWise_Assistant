@@ -2,7 +2,7 @@
 /**
  * @fileOverview A Genkit flow that generates a welcome video for the user.
  * 
- * This flow uses the Veo 3 model to create a high-quality video of a 
+ * This flow uses the Veo 2 model to create a high-quality video of a 
  * futuristic robotic medical assistant giving a warm welcome.
  */
 
@@ -26,10 +26,14 @@ const welcomeVideoFlow = ai.defineFlow(
     outputSchema: WelcomeVideoOutputSchema,
   },
   async () => {
-    // We use Veo 3 for the highest quality preview with motion
+    // We use Veo 2 (stable) to ensure reliable generation
     let { operation } = await ai.generate({
-      model: googleAI.model('veo-3.0-generate-preview'),
+      model: googleAI.model('veo-2.0-generate-001'),
       prompt: 'A friendly, futuristic robotic medical assistant avatar, sleek high-tech design in white and clinical blue, smiling and waving a greeting, cinematic laboratory background, 3D animated render style, 4k, warm lighting.',
+      config: {
+        durationSeconds: 5,
+        aspectRatio: '16:9',
+      },
     });
 
     if (!operation) {
@@ -55,6 +59,9 @@ const welcomeVideoFlow = ai.defineFlow(
 
     // Fetch the video content and convert to base64
     const response = await fetch(`${videoPart.media.url}&key=${process.env.GEMINI_API_KEY}`);
+    if (!response.ok) {
+        throw new Error('Failed to fetch video data from storage');
+    }
     const buffer = await response.arrayBuffer();
     const base64Video = Buffer.from(buffer).toString('base64');
 
