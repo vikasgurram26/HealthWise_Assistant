@@ -211,5 +211,11 @@
     "checkedIn": "Checked in today!",
     "reward": "+10 points awarded!",
     "description": "Stay active and earn rewards for your consistency!"
+  },
+  "DoctorIntro": {
+    "greeting": "Daily Health Assistant",
+    "welcome": "Hello there!",
+    "welcomeWithName": "Hello, {name}!",
+    "advice": "Remember, a healthy lifestyle is a journey, not a destination. Let's make today a great day for your health!"
   }
 }

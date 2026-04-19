@@ -11,6 +11,12 @@
       "description": "Healthcare background",
       "imageUrl": "https://picsum.photos/seed/health/1200/400",
       "imageHint": "healthcare doctor"
+    },
+    {
+      "id": "doctor-avatar",
+      "description": "Friendly doctor",
+      "imageUrl": "https://picsum.photos/seed/doctor/400/400",
+      "imageHint": "friendly doctor"
     }
   ]
 }
