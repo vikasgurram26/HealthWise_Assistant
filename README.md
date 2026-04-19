@@ -37,6 +37,7 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 
 ## 🐙 Manual GitHub Synchronization
 
+### Push Commands
 If you are working locally and want to push your code to GitHub, follow these commands:
 
 1. **Connect to your repo** (only needs to be done once):
@@ -50,6 +51,15 @@ If you are working locally and want to push your code to GitHub, follow these co
    git commit -m "Update health assistant features"
    git push -u origin main
    ```
+
+### 🔐 Authentication Error Fix (Invalid username or token)
+GitHub does not accept passwords for Git commands. You must use a **Personal Access Token (PAT)**.
+
+1. **Generate Token**: Go to GitHub **Settings > Developer settings > Personal access tokens > Tokens (classic)**.
+2. **Permissions**: Generate a new token with the `repo` scope selected.
+3. **Usage**: When the terminal asks for your password, **paste the token** instead.
+4. **Shortcut**: To save the token and stop being asked, use:
+   `git remote set-url origin https://<YOUR_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git`
 
 ---
 
