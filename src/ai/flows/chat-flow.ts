@@ -56,12 +56,5 @@ You MUST NOT provide medical advice, diagnosis, or treatment. Always include a d
 
 
 export async function chat(request: ChatRequest): Promise<ChatResponse> {
-  try {
-    return await chatFlow(request);
-  } catch (error) {
-    console.error('AI Chat Error:', error);
-    return { 
-      text: "I'm sorry, I'm having a bit of trouble connecting to my health knowledge base right now. Please try again in a moment. If the problem persists, please check your internet connection." 
-    };
-  }
+  return await chatFlow(request);
 }
