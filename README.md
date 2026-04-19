@@ -37,20 +37,27 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 
 ## 🐙 Manual GitHub Synchronization
 
-Since GitHub requires **Personal Access Tokens (PAT)** for authentication, use the following commands in your terminal:
+GitHub requires a **Personal Access Token (PAT)** instead of your password.
 
-1. **Configure your Token (Run this first)**:
-   ```bash
-   git remote set-url origin https://<YOUR_GITHUB_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git
-   ```
-   *(Replace `<YOUR_GITHUB_TOKEN>` with the token you generated on GitHub)*.
+### How to get your Token:
+1. Go to **GitHub Settings** > **Developer settings** (at the bottom).
+2. Click **Personal access tokens** > **Tokens (classic)**.
+3. Click **Generate new token (classic)**.
+4. Name it "Firebase Studio", check the **`repo`** scope, and click **Generate token**.
+5. **Copy the token** (you won't see it again!).
 
-2. **Upload your changes**:
-   ```bash
-   git add .
-   git commit -m "Final codebase update"
-   git push -u origin main
-   ```
+### Commands to Push:
+Run these in your terminal (replace `<YOUR_TOKEN>` with your copied token):
+
+```bash
+# 1. Update the remote URL with your token
+git remote set-url origin https://<YOUR_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git
+
+# 2. Upload your changes
+git add .
+git commit -m "Update codebase with latest features"
+git push -u origin main
+```
 
 ---
 
