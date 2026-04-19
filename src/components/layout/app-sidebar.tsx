@@ -1,11 +1,9 @@
-
 'use client';
 
 import {
   AlertTriangle,
   ClipboardPlus,
   HeartPulse,
-  Languages,
   LayoutGrid,
   LifeBuoy,
   MessageCircle,
@@ -13,7 +11,6 @@ import {
   ShieldCheck,
   Stethoscope,
   Syringe,
-  Check,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -27,13 +24,6 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useLocale } from '@/lib/i18n/provider';
 import { useTranslations } from '@/lib/i18n/use-translations';
 
 
@@ -50,7 +40,6 @@ const WhatsAppIcon = () => (
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { locale, setLocale } = useLocale();
   const t = useTranslations('AppSidebar');
 
   const navItems = [
@@ -67,12 +56,6 @@ export function AppSidebar() {
     { href: '/settings', icon: Settings, label: t('settings') },
     { href: 'https://wa.me/14155238886', icon: WhatsAppIcon, label: t('contactUs') },
     { href: '/support', icon: LifeBuoy, label: t('support'), disabled: true },
-  ];
-
-  const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'hi', name: 'हिन्दी' },
-    { code: 'te', name: 'తెలుగు' },
   ];
 
   const isActive = (href: string) => {
@@ -132,28 +115,6 @@ export function AppSidebar() {
              </SidebarMenuButton>
            </SidebarMenuItem>
           ))}
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton
-                  variant="ghost"
-                  className="w-full justify-start"
-                  tooltip={{ children: t('language') }}
-                >
-                  <Languages />
-                  <span>{t('language')}</span>
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="mb-2 w-56" side="top" align="start">
-                {languages.map(lang => (
-                  <DropdownMenuItem key={lang.code} onSelect={() => setLocale(lang.code)}>
-                    <Check className={cn('mr-2 h-4 w-4', locale === lang.code ? 'opacity-100' : 'opacity-0')} />
-                    {lang.name}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </>

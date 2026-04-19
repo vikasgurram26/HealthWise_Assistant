@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -7,18 +6,32 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Stethoscope, User } from 'lucide-react';
+import { Stethoscope, User, Languages } from 'lucide-react';
 import { chat, ChatMessage } from '@/ai/flows/chat-flow';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { useTranslations } from '@/lib/i18n/use-translations';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+const CHAT_LANGUAGES = [
+  { value: 'English', label: 'English' },
+  { value: 'Hindi', label: 'हिन्दी (Hindi)' },
+  { value: 'Telugu', label: 'తెలుగు (Telugu)' },
+];
 
 export default function ChatbotPage() {
   const t = useTranslations('ChatbotPage');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [chatLanguage, setChatLanguage] = useState('English');
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const userAvatar = PlaceHolderImages.find((img) => img.id === 'user-avatar');
 
@@ -43,6 +56,7 @@ export default function ChatbotPage() {
       const response = await chat({
         history: messages,
         prompt: input,
+        language: chatLanguage,
       });
 
       const modelMessage: ChatMessage = { role: 'model', content: [{ text: response.text }] };
@@ -61,9 +75,26 @@ export default function ChatbotPage() {
 
   return (
     <Card className="h-[calc(100vh-8rem)] flex flex-col">
-      <CardHeader>
-        <CardTitle>{t('title')}</CardTitle>
-        <CardDescription>{t('description')}</CardDescription>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0">
+        <div className="flex flex-col gap-1">
+          <CardTitle>{t('title')}</CardTitle>
+          <CardDescription>{t('description')}</CardDescription>
+        </div>
+        <div className="flex items-center gap-2">
+          <Languages className="size-4 text-muted-foreground" />
+          <Select value={chatLanguage} onValueChange={setChatLanguage}>
+            <SelectTrigger className="w-[140px] h-8 text-xs">
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent>
+              {CHAT_LANGUAGES.map((lang) => (
+                <SelectItem key={lang.value} value={lang.value} className="text-xs">
+                  {lang.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent className="flex-grow flex flex-col gap-4 overflow-hidden">
         <ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>
@@ -148,4 +179,3 @@ export default function ChatbotPage() {
     </Card>
   );
 }
-
