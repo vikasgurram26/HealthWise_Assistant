@@ -35,6 +35,24 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 
 ---
 
+## 🐙 Manual GitHub Synchronization
+
+If you are working locally and want to push your code to GitHub, follow these commands:
+
+1. **Connect to your repo** (only needs to be done once):
+   ```bash
+   git remote add origin <YOUR_GITHUB_REPO_URL>
+   ```
+
+2. **Upload your changes**:
+   ```bash
+   git add .
+   git commit -m "Update health assistant features"
+   git push -u origin main
+   ```
+
+---
+
 ## 🟢 WhatsApp Integration Setup (Twilio Sandbox)
 
 To connect your AI to WhatsApp:
