@@ -22,13 +22,11 @@ export function WelcomeVideoOverlay() {
   const t = useTranslations('DoctorIntro');
 
   useEffect(() => {
-    // Check if we've already shown the welcome in this session
-    const hasShownWelcome = sessionStorage.getItem('welcome-shown');
-    
-    if (!loading && user && !hasShownWelcome) {
+    // For testing and visibility, we show the welcome video on every refresh
+    // Previously we used sessionStorage to only show it once.
+    if (!loading && user) {
       setIsOpen(true);
       handleGenerate();
-      sessionStorage.setItem('welcome-shown', 'true');
     }
   }, [user, loading]);
 
