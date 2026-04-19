@@ -37,19 +37,19 @@ Before your first deployment, you must add your API keys to the App Hosting dash
 
 ## 🐙 Manual GitHub Synchronization
 
-You have successfully generated your Personal Access Token (PAT). Run these commands in your terminal to push your code:
-
-### Commands to Push:
-Run these in your terminal:
+To push your changes to GitHub, run these commands in your terminal:
 
 ```bash
 # 1. Update the remote URL with your token (REPLACE <YOUR_TOKEN> with your actual token)
+git remote set-url origin https://<YOUR_TOKEN>@github.com/vikasgurram26/HealthWise_Assistant.git
 
 # 2. Upload your changes
 git add .
 git commit -m "Update codebase with latest features"
 git push -u origin main
 ```
+
+**Note:** If GitHub blocks your push due to "Secret Scanning", click the URL provided in the terminal error message to "Allow" the secret, then try the `git push` command again.
 
 ---
 
