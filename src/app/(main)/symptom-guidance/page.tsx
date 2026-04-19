@@ -22,7 +22,8 @@ import {
   User, 
   AlertTriangle, 
   RefreshCcw,
-  Stethoscope
+  Stethoscope,
+  MapPin
 } from 'lucide-react';
 import {
   symptomGuidance,
@@ -99,82 +100,91 @@ export default function SymptomGuidancePage() {
   };
 
   return (
-    <div className="grid gap-6 max-w-4xl mx-auto">
-      <Card className="border-primary/20 shadow-md">
-        <CardHeader className="flex flex-row items-center justify-between">
-          <div>
-            <CardTitle className="flex items-center gap-2">
-              <Stethoscope className="text-primary" />
-              {t('title')}
-            </CardTitle>
-            <CardDescription>{t('description')}</CardDescription>
+    <div className="grid gap-8 max-w-5xl mx-auto pb-10">
+      <Card className="border-primary/10 shadow-2xl rounded-[2.5rem] overflow-hidden glass-card flex flex-col min-h-[600px]">
+        <CardHeader className="flex flex-row items-center justify-between bg-primary/5 px-8 py-6 border-b">
+          <div className="flex items-center gap-4">
+            <div className="flex size-14 items-center justify-center rounded-2xl bg-white text-primary shadow-sm">
+              <HeartPulse className="size-8" />
+            </div>
+            <div>
+              <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                {t('title')}
+              </CardTitle>
+              <CardDescription className="text-base">{t('description')}</CardDescription>
+            </div>
           </div>
-          <Button variant="ghost" size="sm" onClick={resetTriage} className="text-muted-foreground">
+          <Button variant="outline" size="sm" onClick={resetTriage} className="rounded-xl border-primary/20 hover:bg-primary/10">
             <RefreshCcw className="mr-2 size-4" />
             {t('reset')}
           </Button>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-2 mb-4">
-            <Label htmlFor="location">{t('locationLabel')}</Label>
+        <CardContent className="p-0 flex flex-col flex-grow">
+          <div className="px-8 py-6 bg-white/50 border-b flex items-center gap-4">
+            <Label htmlFor="location" className="flex items-center gap-2 font-bold text-muted-foreground">
+              <MapPin className="size-4" />
+              {t('locationLabel')}
+            </Label>
             <Input
               id="location"
               placeholder={t('locationPlaceholder')}
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               disabled={isLoading || history.length > 0}
-              className="max-w-xs"
+              className="max-w-xs rounded-xl border-primary/10 bg-white"
             />
           </div>
 
-          <ScrollArea className="h-[400px] rounded-md border p-4 bg-muted/30" ref={scrollAreaRef}>
-            <div className="space-y-4">
+          <ScrollArea className="flex-grow p-8 bg-muted/20" ref={scrollAreaRef}>
+            <div className="space-y-6 max-w-3xl mx-auto">
               {history.length === 0 && (
-                <div className="text-center py-10 text-muted-foreground">
-                  <HeartPulse className="size-12 mx-auto mb-4 opacity-20" />
-                  <p>{t('startInstruction')}</p>
+                <div className="text-center py-20 text-muted-foreground space-y-4">
+                  <div className="size-20 bg-white rounded-full flex items-center justify-center mx-auto shadow-sm border border-primary/5">
+                    <Bot className="size-10 text-primary/30" />
+                  </div>
+                  <p className="text-lg max-w-md mx-auto">{t('startInstruction')}</p>
                 </div>
               )}
               {history.map((msg, idx) => (
                 <div
                   key={idx}
                   className={cn(
-                    "flex gap-3",
+                    "flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300",
                     msg.role === 'user' ? "justify-end" : "justify-start"
                   )}
                 >
                   {msg.role === 'model' && (
-                    <div className="size-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
-                      <Bot size={16} />
+                    <div className="size-10 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/20 shrink-0 mt-1">
+                      <Bot size={20} />
                     </div>
                   )}
                   <div
                     className={cn(
-                      "max-w-[80%] rounded-2xl p-3 text-sm shadow-sm",
+                      "max-w-[85%] rounded-2xl p-4 text-base shadow-sm leading-relaxed",
                       msg.role === 'user'
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-background border"
+                        ? "bg-primary text-primary-foreground rounded-tr-none"
+                        : "bg-white border border-primary/10 rounded-tl-none"
                     )}
                   >
                     <p className="whitespace-pre-line">{msg.text}</p>
                   </div>
                   {msg.role === 'user' && (
-                    <div className="size-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground border">
-                      <User size={16} />
+                    <div className="size-10 rounded-2xl bg-white flex items-center justify-center text-muted-foreground border-2 border-primary/5 shadow-sm shrink-0 mt-1">
+                      <User size={20} />
                     </div>
                   )}
                 </div>
               ))}
               {isLoading && (
-                <div className="flex gap-3 justify-start">
-                  <div className="size-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
-                    <Bot size={16} />
+                <div className="flex gap-4 justify-start">
+                  <div className="size-10 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/20 shrink-0">
+                    <Bot size={20} />
                   </div>
-                  <div className="bg-background border rounded-2xl p-4 shadow-sm w-16">
-                    <div className="flex gap-1">
-                      <div className="size-1.5 bg-muted-foreground rounded-full animate-bounce" />
-                      <div className="size-1.5 bg-muted-foreground rounded-full animate-bounce [animation-delay:0.2s]" />
-                      <div className="size-1.5 bg-muted-foreground rounded-full animate-bounce [animation-delay:0.4s]" />
+                  <div className="bg-white border border-primary/10 rounded-2xl rounded-tl-none p-5 shadow-sm">
+                    <div className="flex gap-2">
+                      <div className="size-2 bg-primary/30 rounded-full animate-bounce" />
+                      <div className="size-2 bg-primary/30 rounded-full animate-bounce [animation-delay:0.2s]" />
+                      <div className="size-2 bg-primary/30 rounded-full animate-bounce [animation-delay:0.4s]" />
                     </div>
                   </div>
                 </div>
@@ -182,54 +192,60 @@ export default function SymptomGuidancePage() {
             </div>
           </ScrollArea>
         </CardContent>
-        <CardFooter className="flex gap-2">
-          <Input
-            placeholder={t('chatPlaceholder')}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            disabled={isLoading || lastResult?.status === 'analysis_complete'}
-            className="flex-grow"
-          />
-          <Button 
-            onClick={handleSend} 
-            disabled={isLoading || !input.trim() || lastResult?.status === 'analysis_complete'}
-          >
-            <Send className="size-4" />
-          </Button>
+        <CardFooter className="p-8 bg-white border-t">
+          <div className="max-w-3xl mx-auto w-full flex gap-3">
+            <Input
+              placeholder={t('chatPlaceholder')}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              disabled={isLoading || lastResult?.status === 'analysis_complete'}
+              className="flex-grow h-14 rounded-2xl border-primary/10 px-6 text-lg focus-visible:ring-primary shadow-inner bg-muted/30"
+            />
+            <Button 
+              onClick={handleSend} 
+              disabled={isLoading || !input.trim() || lastResult?.status === 'analysis_complete'}
+              className="size-14 rounded-2xl shadow-lg active:scale-95 transition-all"
+            >
+              <Send className="size-6" />
+            </Button>
+          </div>
         </CardFooter>
       </Card>
 
       {lastResult?.status === 'analysis_complete' && lastResult.analysis && (
-        <Card className="border-green-500/20 bg-green-50/10 dark:bg-green-900/5">
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <AlertTriangle className="text-yellow-500" />
+        <Card className="border-primary/10 shadow-2xl rounded-[2.5rem] overflow-hidden glass-card animate-in fade-in zoom-in duration-500">
+          <CardHeader className="bg-green-500/10 border-b p-8">
+            <CardTitle className="text-2xl flex items-center gap-3 text-green-700">
+              <AlertTriangle className="size-8" />
               {t('analysisTitle')}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="grid gap-4">
+          <CardContent className="p-10 space-y-10">
+            <div className="grid gap-8">
               {lastResult.analysis.map((item, idx) => (
-                <div key={idx} className="space-y-2">
-                  <div className="flex justify-between text-sm font-medium">
-                    <span>{item.condition}</span>
-                    <span className="text-primary">{item.probability}%</span>
+                <div key={idx} className="space-y-3 group">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xl font-bold text-foreground">{item.condition}</span>
+                    <span className="text-2xl font-black text-primary">{item.probability}%</span>
                   </div>
-                  <Progress value={item.probability} className="h-2" />
-                  <p className="text-xs text-muted-foreground">{item.reasoning}</p>
+                  <Progress value={item.probability} className="h-4 rounded-full bg-muted shadow-inner" />
+                  <p className="text-base text-muted-foreground leading-relaxed italic">{item.reasoning}</p>
                 </div>
               ))}
             </div>
             
-            <Alert variant="destructive" className="bg-destructive/5 border-destructive/20">
-              <AlertTitle>{t('disclaimerTitle')}</AlertTitle>
-              <AlertDescription className="text-xs">
+            <Alert variant="destructive" className="bg-destructive/5 border-destructive/20 rounded-2xl p-6">
+              <AlertTitle className="text-lg font-bold mb-2 flex items-center gap-2">
+                 <AlertTriangle className="size-5" />
+                 {t('disclaimerTitle')}
+              </AlertTitle>
+              <AlertDescription className="text-sm leading-relaxed">
                 {lastResult.disclaimer}
               </AlertDescription>
             </Alert>
             
-            <Button onClick={resetTriage} variant="outline" className="w-full">
+            <Button onClick={resetTriage} variant="outline" className="w-full h-14 rounded-2xl text-lg font-bold hover:bg-primary hover:text-white transition-all">
               {t('startOver')}
             </Button>
           </CardContent>

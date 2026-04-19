@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Stethoscope, User, Languages } from 'lucide-react';
+import { Stethoscope, User, Languages, Send } from 'lucide-react';
 import { chat, ChatMessage } from '@/ai/flows/chat-flow';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
@@ -42,7 +42,7 @@ export default function ChatbotPage() {
         behavior: 'smooth',
       });
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -74,16 +74,21 @@ export default function ChatbotPage() {
   };
 
   return (
-    <Card className="h-[calc(100vh-8rem)] flex flex-col">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0">
-        <div className="flex flex-col gap-1">
-          <CardTitle>{t('title')}</CardTitle>
-          <CardDescription>{t('description')}</CardDescription>
+    <Card className="h-[calc(100vh-10rem)] flex flex-col rounded-3xl overflow-hidden border-primary/10 shadow-2xl glass-card">
+      <CardHeader className="flex flex-row items-center justify-between border-b bg-background/50 backdrop-blur-sm px-6 py-4">
+        <div className="flex items-center gap-4">
+          <div className="flex size-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/20">
+            <Stethoscope className="size-6" />
+          </div>
+          <div className="flex flex-col">
+            <CardTitle className="text-xl font-bold">{t('title')}</CardTitle>
+            <CardDescription className="text-xs">{t('description')}</CardDescription>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <Languages className="size-4 text-muted-foreground" />
           <Select value={chatLanguage} onValueChange={setChatLanguage}>
-            <SelectTrigger className="w-[140px] h-8 text-xs">
+            <SelectTrigger className="w-[120px] h-9 text-xs rounded-xl border-primary/20">
               <SelectValue placeholder="Language" />
             </SelectTrigger>
             <SelectContent>
@@ -96,19 +101,25 @@ export default function ChatbotPage() {
           </Select>
         </div>
       </CardHeader>
-      <CardContent className="flex-grow flex flex-col gap-4 overflow-hidden">
-        <ScrollArea className="flex-grow pr-4" ref={scrollAreaRef}>
-          <div className="space-y-4">
+      <CardContent className="flex-grow flex flex-col gap-4 overflow-hidden p-0 relative">
+        <ScrollArea className="flex-grow p-6" ref={scrollAreaRef}>
+          <div className="space-y-6 max-w-4xl mx-auto">
+            {messages.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-20 text-center text-muted-foreground opacity-40">
+                <MessageCircle className="size-20 mb-4" />
+                <p className="text-lg">Start a conversation with HealthWise AI</p>
+              </div>
+            )}
             {messages.map((message, index) => (
               <div
                 key={index}
                 className={cn(
-                  'flex items-start gap-3',
+                  'flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300',
                   message.role === 'user' ? 'justify-end' : 'justify-start'
                 )}
               >
                 {message.role === 'model' && (
-                  <Avatar className="h-9 w-9 border">
+                  <Avatar className="h-10 w-10 border-2 border-primary/20 shadow-sm">
                     <div className="flex size-full items-center justify-center rounded-full bg-primary text-primary-foreground">
                       <Stethoscope className="size-5" />
                     </div>
@@ -116,28 +127,28 @@ export default function ChatbotPage() {
                 )}
                 <div
                   className={cn(
-                    'max-w-xs rounded-lg p-3 text-sm md:max-w-md',
+                    'max-w-[80%] rounded-2xl p-4 text-sm md:text-base shadow-sm leading-relaxed',
                     message.role === 'user'
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted'
+                      ? 'bg-primary text-primary-foreground rounded-tr-none'
+                      : 'bg-white border-2 border-primary/5 rounded-tl-none'
                   )}
                 >
                   <p className="whitespace-pre-line">{message.content[0].text}</p>
                 </div>
                 {message.role === 'user' && (
-                  <Avatar className="h-9 w-9 border">
+                  <Avatar className="h-10 w-10 border-2 border-white shadow-sm">
                     {userAvatar ? (
                       <Image
                         src={userAvatar.imageUrl}
                         alt={userAvatar.description}
-                        width={36}
-                        height={36}
+                        width={40}
+                        height={40}
                         data-ai-hint={userAvatar.imageHint}
                         className="rounded-full"
                       />
                     ) : (
                       <AvatarFallback>
-                        <User />
+                        <User className="size-6" />
                       </AvatarFallback>
                     )}
                   </Avatar>
@@ -145,37 +156,46 @@ export default function ChatbotPage() {
               </div>
             ))}
              {isLoading && (
-              <div className="flex items-start gap-3 justify-start">
-                <Avatar className="h-9 w-9 border">
+              <div className="flex items-start gap-4 justify-start">
+                <Avatar className="h-10 w-10 border-2 border-primary/20">
                   <div className="flex size-full items-center justify-center rounded-full bg-primary text-primary-foreground">
                     <Stethoscope className="size-5" />
                   </div>
                 </Avatar>
-                <div className="max-w-xs rounded-lg p-3 text-sm md:max-w-md bg-muted">
+                <div className="bg-white border-2 border-primary/5 rounded-2xl rounded-tl-none p-4 shadow-sm">
                   <div className="flex items-center space-x-2">
-                    <span className="h-2 w-2 bg-foreground rounded-full animate-pulse [animation-delay:-0.3s]"></span>
-                    <span className="h-2 w-2 bg-foreground rounded-full animate-pulse [animation-delay:-0.15s]"></span>
-                    <span className="h-2 w-2 bg-foreground rounded-full animate-pulse"></span>
+                    <span className="h-2 w-2 bg-primary/40 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                    <span className="h-2 w-2 bg-primary/40 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                    <span className="h-2 w-2 bg-primary/40 rounded-full animate-bounce"></span>
                   </div>
                 </div>
               </div>
             )}
           </div>
         </ScrollArea>
-        <div className="flex items-center gap-2">
-          <Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && !isLoading && handleSend()}
-            placeholder={t('placeholder')}
-            disabled={isLoading}
-            className="flex-grow"
-          />
-          <Button onClick={handleSend} disabled={isLoading}>
-            {t('send')}
-          </Button>
+        <div className="p-6 bg-background/80 backdrop-blur-sm border-t">
+          <div className="max-w-4xl mx-auto flex items-center gap-3">
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && !isLoading && handleSend()}
+              placeholder={t('placeholder')}
+              disabled={isLoading}
+              className="flex-grow h-14 rounded-2xl border-primary/10 bg-white/50 px-6 text-lg focus-visible:ring-primary shadow-inner"
+            />
+            <Button 
+              onClick={handleSend} 
+              disabled={isLoading || !input.trim()} 
+              size="icon"
+              className="size-14 rounded-2xl shadow-lg shadow-primary/20 active:scale-90 transition-transform"
+            >
+              <Send className="size-6" />
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
   );
 }
+
+import { MessageCircle } from 'lucide-react';

@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "user-avatar",
+      "description": "User profile avatar",
+      "imageUrl": "https://picsum.photos/seed/user/200/200",
+      "imageHint": "profile avatar"
+    },
+    {
+      "id": "hero-health",
+      "description": "Healthcare background",
+      "imageUrl": "https://picsum.photos/seed/health/1200/400",
+      "imageHint": "healthcare doctor"
+    }
+  ]
 }

@@ -64,42 +64,47 @@ export function AppSidebar() {
 
   return (
     <>
-      <SidebarHeader>
-        <div
+      <SidebarHeader className="p-6">
+        <Link
+          href="/dashboard"
           className={cn(
-            'flex items-center gap-2 p-2 transition-all',
-            'group-data-[collapsible=icon]:-ml-1 group-data-[collapsible=icon]:p-0'
+            'flex items-center gap-3 transition-all active:scale-95',
+            'group-data-[collapsible=icon]:p-0'
           )}
         >
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Stethoscope className="size-5" />
+          <div className="flex size-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg shadow-primary/20">
+            <Stethoscope className="size-6" />
           </div>
-          <span className="truncate text-lg font-semibold group-data-[collapsible=icon]:hidden">
+          <span className="truncate text-xl font-bold tracking-tight text-foreground group-data-[collapsible=icon]:hidden">
             {t('title')}
           </span>
-        </div>
+        </Link>
       </SidebarHeader>
-      <SidebarContent className="flex-1 p-2">
-        <SidebarMenu>
+      <SidebarContent className="px-3 pb-4">
+        <SidebarMenu className="gap-1">
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
               <SidebarMenuButton
                 asChild
                 isActive={isActive(item.href)}
                 tooltip={{ children: item.label }}
+                className={cn(
+                  "h-12 rounded-xl transition-all",
+                  isActive(item.href) ? "bg-primary text-primary-foreground shadow-md shadow-primary/10" : "hover:bg-primary/5 hover:text-primary"
+                )}
               >
                 <Link href={item.href}>
-                  <item.icon />
-                  <span>{item.label}</span>
+                  <item.icon className="size-5" />
+                  <span className="font-medium">{item.label}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter className="p-2">
-        <SidebarSeparator />
-        <SidebarMenu>
+      <SidebarFooter className="p-4">
+        <SidebarSeparator className="mb-4" />
+        <SidebarMenu className="gap-1">
           {bottomNavItems.map((item) => (
              <SidebarMenuItem key={item.href}>
              <SidebarMenuButton
@@ -107,10 +112,14 @@ export function AppSidebar() {
                isActive={isActive(item.href)}
                tooltip={{ children: item.label }}
                disabled={!!item.disabled}
+               className={cn(
+                 "h-11 rounded-xl transition-all",
+                 isActive(item.href) ? "bg-primary text-primary-foreground" : "hover:bg-primary/5 hover:text-primary"
+               )}
              >
                <Link href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
-                 <item.icon />
-                 <span>{item.label}</span>
+                 <item.icon className="size-5" />
+                 <span className="font-medium">{item.label}</span>
                </Link>
              </SidebarMenuButton>
            </SidebarMenuItem>

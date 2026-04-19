@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -38,8 +37,6 @@ export function GamificationCard() {
       const currentScore = profile.healthScore || 0;
       const currentStreak = profile.dailyStreak || 0;
       
-      // Streak logic: check if last check-in was yesterday
-      const lastDate = profile.lastCheckIn ? new Date(profile.lastCheckIn) : null;
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
       const yesterdayFormatted = format(yesterday, 'yyyy-MM-dd');
@@ -71,35 +68,47 @@ export function GamificationCard() {
   if (loading || !profile) return null;
 
   return (
-    <Card className="bg-gradient-to-br from-primary/10 via-background to-accent/10 border-primary/20 shadow-lg">
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-lg font-bold flex items-center gap-2">
-          <Trophy className="text-yellow-500" />
+    <Card className="h-full bg-gradient-to-br from-primary/10 via-background to-accent/10 border-primary/20 shadow-xl rounded-3xl overflow-hidden interactive-card">
+      <CardHeader className="flex flex-row items-center justify-between pb-4">
+        <CardTitle className="text-xl font-bold flex items-center gap-2">
+          <Trophy className="text-yellow-500 size-6" />
           {t('healthScore')}
         </CardTitle>
-        <div className="text-2xl font-black text-primary">
+        <div className="text-3xl font-black text-primary drop-shadow-sm">
           {profile.healthScore || 0}
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <Zap className={cn("size-5", profile.dailyStreak ? "text-orange-500 fill-orange-500" : "text-muted-foreground")} />
-            <span className="text-sm font-medium">{t('streak')}</span>
+      <CardContent className="space-y-6">
+        <div className="flex flex-col gap-2">
+           <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Zap className={cn("size-6 transition-all", profile.dailyStreak ? "text-orange-500 fill-orange-500 scale-110" : "text-muted-foreground")} />
+              <span className="text-sm font-semibold text-muted-foreground uppercase tracking-tight">{t('streak')}</span>
+            </div>
+            <span className="text-lg font-bold bg-white border px-3 py-1 rounded-full shadow-sm">
+              {t('days', { count: profile.dailyStreak || 0 })}
+            </span>
           </div>
-          <span className="text-sm font-bold bg-muted px-2 py-1 rounded">
-            {t('days', { count: profile.dailyStreak || 0 })}
-          </span>
+          <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
+             <div 
+               className="h-full bg-primary transition-all duration-1000" 
+               style={{ width: `${Math.min(((profile.dailyStreak || 0) % 7) / 7 * 100 + 5, 100)}%` }}
+             />
+          </div>
+          <p className="text-[10px] text-muted-foreground text-right">{t('days', { count: (7 - ((profile.dailyStreak || 0) % 7)) })} left for bonus</p>
         </div>
         
         <Button 
           onClick={handleCheckIn} 
           disabled={hasCheckedInToday || isUpdating}
-          className={cn("w-full transition-all duration-300", hasCheckedInToday && "bg-green-500 hover:bg-green-600")}
+          className={cn(
+            "w-full h-12 rounded-2xl text-base font-bold transition-all shadow-lg active:scale-95",
+            hasCheckedInToday ? "bg-green-500 hover:bg-green-600 shadow-green-200" : "bg-primary hover:bg-primary/90 shadow-primary/20"
+          )}
         >
           {hasCheckedInToday ? (
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="size-4" />
+              <CheckCircle2 className="size-5" />
               {t('checkedIn')}
             </span>
           ) : (
