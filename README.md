@@ -44,7 +44,6 @@ Run these in your terminal:
 
 ```bash
 # 1. Update the remote URL with your token
-git remote set-url origin https://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@github.com/vikasgurram26/HealthWise_Assistant.git
 
 # 2. Upload your changes
 git add .
